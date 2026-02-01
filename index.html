@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$GAPE2287 - Meme Coin</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #0b0c10, #1f2833, #0f0c29);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* Animated stars */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Rocket animation */
+    .rocket {
+      position: absolute;
+      left: 10%;
+      bottom: 0;
+      width: 60px;
+      animation: launch 10s infinite linear;
+    }
+    @keyframes launch {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-120vh) rotate(5deg); }
+    }
+    .flame {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 20px;
+      height: 40px;
+      background: radial-gradient(circle, #ff4500, #ffcc00);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.3s infinite alternate;
+    }
+    @keyframes flicker {
+      from { transform: translateX(-50%) scaleY(0.8); opacity: 0.7; }
+      to { transform: translateX(-50%) scaleY(1.2); opacity: 1; }
+    }
+
+    header {
+      padding: 60px 20px;
+      background: rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .logo-container {
+      position: relative;
+      width: 250px;
+      margin: 0 auto;
+      animation: pulse 3s infinite;
+    }
+
+    .ape-logo {
+      width: 100%;
+      border-radius: 50%;
+      border: 4px solid #ffcc00;
+      box-shadow: 0 0 25px #ffcc00;
+    }
+
+    .orbit {
+      position: absolute;
+      font-size: 24px;
+      animation: orbit 6s linear infinite;
+    }
+
+    .banana1 { top: -30px; left: 50%; transform: translateX(-50%); }
+    .banana2 { bottom: -30px; left: 10%; }
+    .banana3 { bottom: -30px; right: 10%; }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin: 20px 0;
+      color: #ffcc00;
+      text-shadow: 0 0 15px #ff4500;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      margin-top: 20px;
+      background: linear-gradient(45deg, #ff4500, #ffcc00);
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 15px #ffcc00;
+    }
+
+    section {
+      padding: 50px 20px;
+    }
+
+    h2 {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      width: 220px;
+      box-shadow: 0 0 10px #ffcc00;
+    }
+
+    ol {
+      list-style: none;
+      padding: 0;
+    }
+
+    ol li {
+      margin: 10px 0;
+      font-size: 1.2em;
+      color: #ffcc00;
+    }
+
+    footer {
+      background: rgba(0,0,0,0.8);
+      padding: 30px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #00ffff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer p {
+      color: #ffcc00;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Stars -->
+  <div class="star" style="top:10%; left:20%;"></div>
+  <div class="star" style="top:30%; left:70%;"></div>
+  <div class="star" style="top:50%; left:40%;"></div>
+  <div class="star" style="top:80%; left:60%;"></div>
+  <div class="star" style="top:20%; left:90%;"></div>
+
+  <!-- Rocket -->
+  <div class="rocket">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Rocket_icon.svg" alt="Rocket" width="60">
+    <div class="flame"></div>
+  </div>
+
+  <header>
+    <div class="logo-container">
+      <img src="your-logo.jpeg" alt="$GAPE2287 Logo" class="ape-logo">
+      <div class="orbit banana1">🍌</div>
+      <div class="orbit banana2">🍌</div>
+      <div class="orbit banana3">🍌</div>
+    </div>
+    <h1>From Jungle to City… Now Leading the Conquest to the Moon</h1>
+    <a href="https://pump.fun" class="btn">Buy on Pump.fun</a>
+  </header>
+
+  <section>
+    <h2>About $GAPE2287</h2>
+    <p>Born in the jungle, forged in the city, now leading the tribe to the stars. $GAPE2287 is more than a meme coin — it’s a movement powered by bananas, blockchain, and unstoppable ape energy.</p>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature">🦍 Community First</div>
+      <div class="feature">🚀 Moon Mission</div>
+      <div class="feature">🍌 Banana Fuel</div>
+      <div class="feature">🔗 Blockchain Roots</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Roadmap</h2>
+    <ol>
+      <li>🌴 Jungle Escape</li>
+      <li>🏙️ City Conquest</li>
+      <li>🌌 Moon March</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Bananas, Blockchain, and Beyond.</p>
+    <a href="https://pump.fun">Pump.fun</a> |
+    <a href="https://opensea.io">OpenSea</a> |
+    <a href="https://twitter.com">Twitter</a> |
+    <a href="https://t.me">Telegram</a>
+  </footer>
+</body>
+</html>
