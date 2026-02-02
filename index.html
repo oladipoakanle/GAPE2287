@@ -3,238 +3,840 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$GAPE2287 - Meme Coin</title>
+  <title>$GAPE2287 - Intergalactic Meme Coin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
+    /* CSS Variables */
+    :root {
+      --primary: #ffcc00;
+      --secondary: #00ffff;
+      --accent: #ff4500;
+      --dark: #0b0c10;
+      --darker: #0a0a1f;
+      --neon-glow: 0 0 20px var(--primary), 0 0 40px var(--primary), 0 0 60px var(--primary);
+      --neon-blue: 0 0 20px var(--secondary), 0 0 40px var(--secondary);
+    }
+
+    /* Reset & Base */
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #0b0c10, #1f2833, #0f0c29);
-      color: #fff;
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--darker);
+      color: white;
       overflow-x: hidden;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite alternate;
-    }
-    @keyframes twinkle {
-      from { opacity: 0.2; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1.2); }
-    }
-
-    .rocket {
-      position: absolute;
-      left: 10%;
-      bottom: 0;
-      width: 60px;
-      animation: launch 10s infinite linear;
-    }
-    @keyframes launch {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(-120vh) rotate(5deg); }
-    }
-    .flame {
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      width: 20px;
-      height: 40px;
-      background: radial-gradient(circle, #ff4500, #ffcc00);
-      border-radius: 50%;
-      transform: translateX(-50%);
-      animation: flicker 0.3s infinite alternate;
-    }
-    @keyframes flicker {
-      from { transform: translateX(-50%) scaleY(0.8); opacity: 0.7; }
-      to { transform: translateX(-50%) scaleY(1.2); opacity: 1; }
-    }
-
-    header {
-      padding: 60px 20px;
-      background: rgba(0,0,0,0.6);
       position: relative;
+      min-height: 100vh;
     }
 
-    .logo-container {
-      position: relative;
-      width: 250px;
-      margin: 0 auto;
-      animation: pulse 3s infinite;
-    }
-
-    .ape-logo {
+    /* Animated Space Background */
+    .space-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      border-radius: 50%;
-      border: 4px solid #ffcc00;
-      box-shadow: 0 0 25px #ffcc00;
+      height: 100%;
+      z-index: -3;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(255, 119, 0, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 40% 60%, rgba(120, 0, 255, 0.2) 0%, transparent 40%),
+        linear-gradient(180deg, var(--darker) 0%, #000 100%);
     }
 
-    .orbit {
+    /* Particle System */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    /* Floating Banana Containers */
+    .banana-float {
       position: absolute;
-      font-size: 24px;
-      animation: orbit 6s linear infinite;
+      font-size: 2rem;
+      animation: floatBanana 20s infinite linear;
+      z-index: -1;
+      filter: drop-shadow(0 0 10px var(--primary));
     }
 
-    .banana1 { top: -30px; left: 50%; transform: translateX(-50%); }
-    .banana2 { bottom: -30px; left: 10%; }
-    .banana3 { bottom: -30px; right: 10%; }
-
-    @keyframes orbit {
-      0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-      100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+    @keyframes floatBanana {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(200px, -50px) rotate(180deg); }
+      75% { transform: translate(-100px, 100px) rotate(270deg); }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
     }
 
+    /* Animated Header */
+    header {
+      padding: 80px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      top: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.2;
+      filter: blur(80px);
+      animation: pulseGlow 4s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: translateX(-50%) scale(0.8); opacity: 0.1; }
+      100% { transform: translateX(-50%) scale(1.2); opacity: 0.3; }
+    }
+
+    /* 3D Logo */
+    .logo-3d-container {
+      perspective: 1000px;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    .logo-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate3d 20s infinite linear;
+    }
+
+    .logo-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      box-shadow: var(--neon-glow);
+      overflow: hidden;
+    }
+
+    .logo-face img {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+    }
+
+    .logo-face-front {
+      transform: translateZ(150px);
+    }
+
+    .logo-face-back {
+      transform: rotateY(180deg) translateZ(150px);
+      background: linear-gradient(45deg, var(--secondary), #00ccff);
+    }
+
+    @keyframes rotate3d {
+      0% { transform: rotateY(0deg) rotateX(10deg); }
+      100% { transform: rotateY(360deg) rotateX(10deg); }
+    }
+
+    /* Orbit Rings */
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: orbitSpin 15s infinite linear;
+    }
+
+    .ring-1 { width: 400px; height: 400px; animation-direction: reverse; }
+    .ring-2 { width: 450px; height: 450px; }
+    .ring-3 { width: 500px; height: 500px; animation-direction: reverse; }
+
+    @keyframes orbitSpin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Headings */
     h1 {
-      font-size: 2.8em;
+      font-size: 4.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin: 20px 0;
-      color: #ffcc00;
-      text-shadow: 0 0 15px #ff4500;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      animation: titleGlow 3s infinite alternate;
+      letter-spacing: 2px;
+    }
+
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 10px var(--primary)); }
+      50% { filter: drop-shadow(0 0 20px var(--secondary)); }
+      100% { filter: drop-shadow(0 0 30px var(--accent)); }
     }
 
     .tagline {
-      font-size: 2.2em;
-      margin: 15px 0;
-      color: #00ffff;
-      text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff4500;
-      font-weight: bold;
-      animation: glow 3s infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff4500; }
-      to { text-shadow: 0 0 20px #00ffff, 0 0 40px #ffcc00; }
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin: 20px 0 40px;
+      text-shadow: var(--neon-blue);
+      animation: textFloat 6s ease-in-out infinite;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      margin: 10px;
-      background: linear-gradient(45deg, #ff4500, #ffcc00);
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 0 15px #ffcc00;
+    @keyframes textFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    section {
-      padding: 50px 20px;
-    }
-
-    h2 {
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
-
-    .features {
+    /* Animated Buttons */
+    .btn-container {
       display: flex;
       justify-content: center;
       gap: 30px;
       flex-wrap: wrap;
+      margin: 40px 0;
     }
 
-    .feature {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      width: 220px;
-      box-shadow: 0 0 10px #ffcc00;
-    }
-
-    ol {
-      list-style: none;
-      padding: 0;
-    }
-
-    ol li {
-      margin: 10px 0;
-      font-size: 1.2em;
-      color: #ffcc00;
-    }
-
-    footer {
-      background: rgba(0,0,0,0.8);
-      padding: 30px;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: #00ffff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
-    footer p {
-      color: #ffcc00;
+    .btn-neon {
+      padding: 18px 40px;
+      font-size: 1.3rem;
       font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1;
+      min-width: 250px;
+      justify-content: center;
+    }
+
+    .btn-neon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+      z-index: -1;
+    }
+
+    .btn-neon:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--accent), var(--primary));
+      color: black;
+      box-shadow: 0 0 25px var(--accent);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, var(--secondary), #00aaff);
+      color: white;
+      box-shadow: 0 0 25px var(--secondary);
+    }
+
+    .btn-tertiary {
+      background: linear-gradient(45deg, #ff00ff, #9900ff);
+      color: white;
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+    .btn-neon:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 40px;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: translateX(-100%);
+    }
+
+    .feature-card:hover::before {
+      transform: translateX(100%);
+      transition: transform 0.6s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(255, 204, 0, 0.2);
+      border-color: var(--primary);
+    }
+
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Roadmap Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 80px auto 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+    }
+
+    .timeline-item {
+      margin-bottom: 80px;
+      position: relative;
+      width: 45%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 55%;
+    }
+
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      border-left: 4px solid var(--primary);
+      position: relative;
+    }
+
+    .timeline-content:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+    }
+
+    /* Tokenomics */
+    .tokenomics-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .token-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid rgba(255, 204, 0, 0.2);
+    }
+
+    .token-value {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 20px 0;
+      text-shadow: 0 0 20px var(--primary);
+    }
+
+    /* Animated Counter */
+    .counter-container {
+      text-align: center;
+      margin: 80px 0;
+    }
+
+    .counter {
+      font-size: 5rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 80px 0 40px;
+      margin-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-glow {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0.1;
+      filter: blur(60px);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background: var(--primary);
+      color: black;
+      transform: translateY(-10px) rotate(360deg);
+      box-shadow: 0 0 30px var(--primary);
+    }
+
+    /* Parallax Scrolling */
+    .parallax-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      h1 { font-size: 3.5rem; }
+      .tagline { font-size: 2rem; }
+      .btn-container { flex-direction: column; align-items: center; }
+      .btn-neon { width: 90%; max-width: 400px; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      .section-title { font-size: 2.8rem; }
+      .timeline::before { left: 30px; }
+      .timeline-item { width: 100%; left: 0 !important; padding-left: 60px; }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--darker);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <!-- Stars -->
-  <div class="star" style="top:10%; left:20%;"></div>
-  <div class="star" style="top:30%; left:70%;"></div>
-  <div class="star" style="top:50%; left:40%;"></div>
-  <div class="star" style="top:80%; left:60%;"></div>
-  <div class="star" style="top:20%; left:90%;"></div>
+  <!-- Animated Space Background -->
+  <div class="space-bg"></div>
+  
+  <!-- Particle System Container -->
+  <div id="particles-js"></div>
 
-  <!-- Rocket -->
-  <div class="rocket">
-    <img src="Copilot_20260201_151514.png" alt="Rocket" width="60">
-    <div class="flame"></div>
+  <!-- Floating Bananas -->
+  <div class="banana-float" style="top:20%; left:5%; animation-delay: 0s;">🍌</div>
+  <div class="banana-float" style="top:60%; left:10%; animation-delay: -2s;">🍌</div>
+  <div class="banana-float" style="top:30%; left:90%; animation-delay: -5s;">🍌</div>
+  <div class="banana-float" style="top:80%; left:80%; animation-delay: -8s;">🍌</div>
+  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">🍌</div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <header>
+      <div class="header-glow"></div>
+      
+      <!-- 3D Logo -->
+      <div class="logo-3d-container">
+        <div class="orbit-ring ring-1"></div>
+        <div class="orbit-ring ring-2"></div>
+        <div class="orbit-ring ring-3"></div>
+        
+        <div class="logo-3d">
+          <div class="logo-face logo-face-front">
+            <img src="https://images.unsplash.com/photo-1593717191400-84f38ee95485?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="GAPE Logo">
+          </div>
+          <div class="logo-face logo-face-back">
+            <span style="font-size: 3rem; color: white;">🚀</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="title-glitch">$GAPE2287</h1>
+      <h2 class="tagline">FROM JUNGLE TO JUPITER 🚀</h2>
+      <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
+        The first intergalactic meme coin powered by banana energy, quantum blockchain technology, and pure ape ambition. 
+        We're not just going to the moon - we're building a galactic empire.
+      </p>
+
+      <!-- Animated Counter -->
+      <div class="counter-container">
+        <div class="counter" id="marketCap">$42,690,000</div>
+        <p>Market Cap (Live)</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="btn-container">
+        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
+          <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
+        </a>
+        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
+          <i class="fas fa-crown"></i> VIEW NFTS
+        </a>
+        <a href="#roadmap" class="btn-neon btn-tertiary">
+          <i class="fas fa-map"></i> ROADMAP
+        </a>
+      </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features">
+      <h2 class="section-title">APES STRONG TOGETHER</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🦍</div>
+          <h3>APE-DRIVEN</h3>
+          <p>Community-first governance with voting rights for all $GAPE holders. The jungle decides!</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>HYPERDRIVE ENGINE</h3>
+          <p>Deflationary tokenomics with automatic liquidity generation and redistribution to holders.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🍌</div>
+          <h3>BANANA FUEL</h3>
+          <p>Earn passive bananas through our staking protocol. More bananas, more power.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌌</div>
+          <h3>GALACTIC VISION</h3>
+          <p>Metaverse integration, NFT collections, and play-to-earn games in development.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+      <h2 class="section-title">INTERGALACTIC ROADMAP</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3><i class="fas fa-seedling"></i> PHASE 1: JUNGLE GENESIS</h3>
+            <p>Token launch, community building, initial CEX listings, and website launch with 10,000+ apes.</p>
+            <div class="status" style="color: var(--primary);">COMPLETED 🚀</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3><i class="fas fa-city"></i> PHASE 2: CITY CONQUEST</h3>
+            <p>NFT collection drop, staking platform launch, partnerships with major meme projects.</p>
+            <div class="status" style="color: var(--secondary);">IN PROGRESS ⚡</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3><i class="fas fa-moon"></i> PHASE 3: MOON BASE</h3>
+            <p>Top 10 CEX listings, $GAPE merch store, metaverse land acquisition, mobile game beta.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3><i class="fas fa-globe-americas"></i> PHASE 4: GALACTIC DOMINION</h3>
+            <p>Interoperable blockchain, $GAPE ecosystem fund, charity initiatives, and galactic DAO.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section id="tokenomics">
+      <h2 class="section-title">BANANA ECONOMICS</h2>
+      <div class="tokenomics-container">
+        <div class="token-card">
+          <h3>TOTAL SUPPLY</h3>
+          <div class="token-value">1B</div>
+          <p>1,000,000,000 $GAPE</p>
+        </div>
+        <div class="token-card">
+          <h3>LIQUIDITY</h3>
+          <div class="token-value">60%</div>
+          <p>Locked for 2 years</p>
+        </div>
+        <div class="token-card">
+          <h3>COMMUNITY</h3>
+          <div class="token-value">30%</div>
+          <p>Fair launch distribution</p>
+        </div>
+        <div class="token-card">
+          <h3>TEAM</h3>
+          <div class="token-value">10%</div>
+          <p>Vested over 3 years</p>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <header>
-    <div class="logo-container">
-      <img src="IMG_5116.jpeg" alt="$GAPE2287 Logo" class="ape-logo">
-      <div class="orbit banana1">🍌</div>
-      <div class="orbit banana2">🍌</div>
-      <div class="orbit banana3">🍌</div>
-    </div>
-
-    <!-- Catchy Tagline -->
-    <h2 class="tagline">🍌 Bananas, Blockchain, and Beyond 🚀</h2>
-
-    <h1>From Jungle to City… Now Leading the Conquest to the Moon</h1>
-    <a href="https://pump.fun" class="btn">Buy on Pump.fun</a>
-    <a href="https://opensea.io/item/ethereum/0xa0f38233688bb578c0a88102a95b846c18bc0ba7/2287" 
-       target="_blank" class="btn">View NFT on OpenSea</a>
-  </header>
-
-  <section>
-    <h2>About $GAPE2287</h2>
-    <p>Born in the jungle, forged in the city, now leading the tribe to the stars. $GAPE2287 is more than a meme coin — it’s a movement powered by bananas, blockchain, and unstoppable ape energy.</p>
-  </section>
-
-  <section>
-    <h2>Features</h2>
-    <div class="features">
-      <div class="feature">🦍 Community First</div>
-      <div class="feature">🚀 Moon Mission</div>
-      <div class="feature">🍌 Banana Fuel</div>
-      <div class="feature">🔗 Blockchain Roots</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Roadmap</h2>
-    <ol>
-      <li>🌴 Jungle Escape</li>
-      <li>🏙️ City Conquest</li>
-      <li>🌌 Moon March</li>
-    </ol>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    <p>Bananas, Blockchain, and Beyond.</p>
-    <a href="https://pump.fun">Pump.fun</a> |
-    <a href="https://opensea.io/item/ethereum/0xa0f38233688bb578c0a88102a95b846
+    <div class="footer-glow"></div>
+    <div class="container">
+      <h2 class="section-title">JOIN THE BANANA REVOLUTION</h2>
+      
+      <div class="social-icons">
+        <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://telegram.org" class="social-icon" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://discord.com" class="social-icon" target="_blank"><i class="fab fa-discord"></i></a>
+        <a href="https://reddit.com" class="social-icon" target="_blank"><i class="fab fa-reddit"></i></a>
+        <a href="https://tiktok.com" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
+      </div>
+
+      <p style="text-align: center; margin-top: 40px; font-size: 1.2rem; opacity: 0.8;">
+        🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE | DO YOUR OWN RESEARCH 🍌<br>
+        <span style="font-size: 1rem; opacity: 0.6;">© 2024 $GAPE2287. All bananas reserved.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Initialize Particle System
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 150, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffcc00" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ffff",
+          opacity: 0.2,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        }
+      }
+    });
+
+    // Animated Counter
+    function animateCounter(elementId, start, end, duration) {
+      let obj = document.getElementById(elementId);
+      let startTime = null;
+      
+      function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        let timeElapsed = currentTime - startTime;
+        let progress = Math.min(timeElapsed / duration, 1);
+        
+        let value = Math.floor(progress * (end - start) + start);
+        obj.innerHTML = '$' + value.toLocaleString();
+        
+        if (progress < 1) {
+          requestAnimationFrame(animation);
+        }
+      }
+      
+      requestAnimationFrame(animation);
+    }
+
+    // Start counter animation when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Simulate market cap counter
+      let currentValue = 42690000;
+      setInterval(() => {
+        let randomChange = Math.floor(Math.random() * 10000) - 5000;
+        currentValue += randomChange;
+        if (currentValue < 40000000) currentValue = 40000000;
+        document.getElementById('marketCap').textContent = '$' + currentValue.toLocaleString();
+      }, 3000);
+      
+      // Add hover effects to all feature cards
+      document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-15px) scale(1.05)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+      
+      // Parallax scrolling effect
+      window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.parallax-layer');
+        
+        parallaxElements.forEach(element => {
+          const speed = element.dataset.speed;
+          const yPos = -(scrolled * speed);
+          element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+      });
+      
+      // Banana animation enhancement
+      const bananas = document.querySelectorAll('.banana-float');
+      bananas.forEach(banana => {
+        banana.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.5) rotate(180deg)';
+          this.style.filter = 'drop-shadow(0 0 20px gold)';
+        });
+        
+        banana.addEventListener('mouseleave', function() {
+          this.style.transform = '';
+          this.style.filter = 'drop-shadow(0 0 10px var(--primary))';
+        });
+      });
+      
+      // Glitch effect on title
+      const title = document.querySelector('.title-glitch');
+      setInterval(() => {
+        if (Math.random() > 0.95) {
+          title.style.textShadow = '2px 2px 0 #ff00ff, -2px -2px 0 #00ffff';
+          setTimeout(() => {
+            title.style.textShadow = '';
+          }, 100);
+        }
+      }, 500);
+    });
+
+    // Typewriter effect for tagline
+    const tagline = document.querySelector('.tagline');
+    const originalText = tagline.textContent;
+    tagline.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+      if (i < originalText.length) {
+        tagline.textContent += originalText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    
+    // Start typewriter after page load
+    setTimeout(typeWriter, 1000);
+  </script>
+</body>
+</html>
