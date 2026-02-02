@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$GAPE2287 - Intergalactic Meme Coin</title>
+  <title>$GAPE2287 | Intergalactic Meme Coin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -11,88 +11,94 @@
       --secondary: #00ffff;
       --accent: #ff4500;
       --darker: #050510;
-      --glass: rgba(255, 255, 255, 0.03);
+      --glass: rgba(255, 255, 255, 0.05);
       --glass-border: rgba(255, 255, 255, 0.1);
+      --mouse-x: 50%;
+      --mouse-y: 50%;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
 
     body {
-      font-family: 'Arial', sans-serif;
       background-color: var(--darker);
       color: white;
       overflow-x: hidden;
       min-height: 100vh;
+      cursor: crosshair;
     }
 
-    /* --- BACKGROUND OPTICS --- */
+    /* --- BACKGROUND SYSTEM --- */
     #particles-js {
       position: fixed; width: 100%; height: 100%; z-index: -2;
+      background: radial-gradient(circle at center, #101025 0%, #050510 100%);
     }
 
     .cursor-glow {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(600px circle at var(--x) var(--y), rgba(255, 204, 0, 0.1), transparent 80%);
+      background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 204, 0, 0.08), transparent 80%);
       z-index: -1; pointer-events: none;
     }
 
-    /* --- 3D LOGO SYSTEM --- */
-    .logo-3d-container {
-      perspective: 1000px; width: 280px; height: 280px; margin: 0 auto 40px; position: relative;
+    /* --- 3D INTERACTIVE LOGO --- */
+    .logo-container {
+      perspective: 1000px; width: 260px; height: 260px; margin: 0 auto 30px;
     }
 
     .logo-3d {
       width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
-      transition: transform 0.1s ease-out;
+      transition: transform 0.15s ease-out;
     }
 
     .logo-face {
       position: absolute; width: 100%; height: 100%; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      backface-visibility: hidden; border: 4px solid var(--primary);
-      box-shadow: 0 0 30px var(--primary);
+      backface-visibility: hidden; border: 3px solid var(--primary);
+      box-shadow: 0 0 40px rgba(255, 204, 0, 0.4);
+      background: var(--darker); overflow: hidden;
     }
 
-    .logo-face img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-    .logo-face-back { transform: rotateY(180deg); background: var(--accent); font-size: 5rem; }
+    .logo-face img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* --- TYPOGRAPHY & ANIMATION --- */
+    /* --- UI ELEMENTS --- */
+    .hero { text-align: center; padding: 100px 20px; }
+    
     h1 {
-      font-size: clamp(3rem, 10vw, 5.5rem);
-      background: linear-gradient(to right, var(--primary), var(--secondary));
+      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-weight: 900; letter-spacing: -2px;
+      background: linear-gradient(to bottom, #fff 30%, var(--primary));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 15px rgba(255,204,0,0.3));
+      margin-bottom: 10px;
     }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+    .btn-group { margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+    .btn {
+      padding: 16px 35px; border-radius: 12px; font-weight: 800;
+      text-decoration: none; text-transform: uppercase; transition: 0.3s;
+      border: none; cursor: pointer;
+    }
+
+    .btn-main { background: var(--primary); color: #000; box-shadow: 0 10px 20px rgba(255, 204, 0, 0.3); }
+    .btn-main:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 15px 30px rgba(255, 204, 0, 0.5); }
+
+    .btn-alt { background: rgba(255,255,255,0.1); color: #fff; backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
+    .btn-alt:hover { background: rgba(255,255,255,0.2); }
+
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px; max-width: 1100px; margin: 60px auto; padding: 20px;
+    }
+
+    .glass-card {
+      background: var(--glass); backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border); padding: 40px; border-radius: 24px;
+      text-align: center; transition: 0.3s;
+    }
+
+    .glass-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-
-    /* --- BUTTONS & CARDS --- */
-    .btn-neon {
-      padding: 18px 40px; border-radius: 50px; text-decoration: none;
-      font-weight: bold; color: black; background: var(--primary);
-      box-shadow: 0 0 20px var(--primary); transition: 0.3s;
-      display: inline-block; margin: 10px;
-    }
-
-    .btn-neon:hover { transform: scale(1.1); box-shadow: 0 0 40px var(--primary); }
-
-    .feature-card {
-      background: var(--glass); backdrop-filter: blur(10px);
-      padding: 30px; border-radius: 20px; border: 1px solid var(--glass-border);
-      transition: 0.4s; text-align: center;
-    }
-
-    .feature-card:hover { border-color: var(--secondary); transform: translateY(-10px); }
-
-    .grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px; max-width: 1200px; margin: 50px auto; padding: 0 20px;
-    }
-
-    /* --- CUSTOM SCROLLBAR --- */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -100,63 +106,68 @@
   <div id="particles-js"></div>
   <div class="cursor-glow" id="glow"></div>
 
-  <div class="container" style="text-align: center; padding-top: 80px;">
-    <header class="reveal">
-      <div class="logo-3d-container">
-        <div class="logo-3d" id="main-logo">
-          <div class="logo-face">
-            <img src="IMG_5116.jpeg" alt="$GAPE">
-          </div>
-          <div class="logo-face logo-face-back">🍌</div>
+  <section class="hero">
+    <div class="logo-container reveal">
+      <div class="logo-3d" id="logo">
+        <div class="logo-face">
+          <img src="IMG_5116.jpeg" alt="$GAPE" onerror="this.src='https://via.placeholder.com/300?text=GAPE+2287'">
         </div>
       </div>
-      
-      <h1>$GAPE2287</h1>
-      <h2 class="tagline" style="color: var(--secondary); font-size: 2rem; margin: 20px 0;">JUNGLE GENESIS 🚀</h2>
-      
-      <div style="margin-top: 40px;">
-        <a href="https://pump.fun" class="btn-neon">BUY ON PUMP.FUN</a>
-        <a href="#" class="btn-neon" style="background: transparent; color: white; border: 1px solid white; box-shadow: none;">VIEW CHART</a>
-      </div>
-    </header>
+    </div>
 
-    <div class="grid reveal">
-      <div class="feature-card">
-        <div style="font-size: 3rem;">🦍</div>
-        <h3>Tribe Owned</h3>
-        <p>100% Community driven. No dev wallets.</p>
+    <h1 class="reveal">$GAPE2287</h1>
+    <p class="reveal" style="font-size: 1.5rem; color: var(--secondary);">The First Banana-Powered AI on Solana</p>
+
+    <div class="btn-group reveal">
+      <a href="https://pump.fun" target="_blank" class="btn btn-main">Buy on Pump.fun</a>
+      <a href="https://dexscreener.com" target="_blank" class="btn btn-alt">Live Chart</a>
+    </div>
+
+    <div class="card-grid">
+      <div class="glass-card reveal">
+        <h2 style="color: var(--primary); margin-bottom: 15px;">0% TAX</h2>
+        <p>Pure community energy. No hidden fees, no monkey business.</p>
       </div>
-      <div class="feature-card">
-        <div style="font-size: 3rem;">🔥</div>
-        <h3>Hyper Burn</h3>
-        <p>Banana fuel burns with every transaction.</p>
+      <div class="glass-card reveal">
+        <h2 style="color: var(--secondary); margin-bottom: 15px;">LP BURNT</h2>
+        <p>Liquidity is locked in the eternal jungle fire. Rug-proof.</p>
       </div>
-      <div class="feature-card">
-        <div style="font-size: 3rem;">💎</div>
-        <h3>Diamond Paws</h3>
-        <p>Holding $GAPE earns you reflections.</p>
+      <div class="glass-card reveal">
+        <h2 style="color: var(--accent); margin-bottom: 15px;">AI UTILITY</h2>
+        <p>Proprietary Jungle-Tech analytics for top holders.</p>
       </div>
     </div>
-  </div>
+  </section>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // 1. Mouse Glow Tracking
-    const glow = document.getElementById('glow');
-    window.addEventListener('mousemove', (e) => {
-      glow.style.setProperty('--x', e.clientX + 'px');
-      glow.style.setProperty('--y', e.clientY + 'px');
+    // 1. Particle System
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 60 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.2 },
+        size: { value: 2 },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1.5 }
+      }
     });
 
-    // 2. 3D Logo Interactive Tilt
-    const logo = document.getElementById('main-logo');
+    // 2. Mouse Interactivity
+    const logo = document.getElementById('logo');
     document.addEventListener('mousemove', (e) => {
-      let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
-      let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
-      logo.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      // Glow Update
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+
+      // Logo Tilt
+      const x = (window.innerWidth / 2 - e.pageX) / 20;
+      const y = (window.innerHeight / 2 - e.pageY) / 20;
+      logo.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-    // 3. Scroll Reveal
+    // 3. Scroll Animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
@@ -164,22 +175,6 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // 4. Particles.js Configuration
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 80 },
-        color: { value: "#ffcc00" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 150, color: "#ffcc00", opacity: 0.2, width: 1 },
-        move: { enable: true, speed: 2 }
-      },
-      interactivity: {
-        events: { onhover: { enable: true, mode: "repulse" } }
-      }
-    });
   </script>
 </body>
 </html>
