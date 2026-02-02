@@ -3,242 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$GAPE2287 - Moon Bound</title>
+  <title>$GAPE2287 - Intergalactic Meme Coin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary: #ffcc00;
       --secondary: #00ffff;
       --accent: #ff4500;
-      --bg-dark: #0b0c10;
+      --darker: #050510;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #050505;
-      color: #fff;
-      text-align: center;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--darker);
+      color: white;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    /* Animated Starfield Background */
-    #star-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    /* --- BACKGROUND OPTICS --- */
+    #particles-js {
+      position: fixed; width: 100%; height: 100%; z-index: -2;
     }
 
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: moveStar var(--duration) linear infinite;
+    .cursor-glow {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(600px circle at var(--x) var(--y), rgba(255, 204, 0, 0.1), transparent 80%);
+      z-index: -1; pointer-events: none;
     }
 
-    @keyframes moveStar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-100vh); }
+    /* --- 3D LOGO SYSTEM --- */
+    .logo-3d-container {
+      perspective: 1000px; width: 280px; height: 280px; margin: 0 auto 40px; position: relative;
     }
 
-    /* Floating Rocket */
-    .rocket-wrapper {
-      position: fixed;
-      right: 5%;
-      bottom: -100px;
-      z-index: 10;
-      animation: floatRocket 8s infinite ease-in-out;
+    .logo-3d {
+      width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
     }
 
-    @keyframes floatRocket {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-80vh) rotate(10deg); }
-      100% { transform: translateY(0) rotate(0deg); }
+    .logo-face {
+      position: absolute; width: 100%; height: 100%; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backface-visibility: hidden; border: 4px solid var(--primary);
+      box-shadow: 0 0 30px var(--primary);
     }
 
-    /* Header & Logo */
-    header {
-      padding: 100px 20px;
-      perspective: 1000px;
+    .logo-face img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .logo-face-back { transform: rotateY(180deg); background: var(--accent); font-size: 5rem; }
+
+    /* --- TYPOGRAPHY & ANIMATION --- */
+    h1 {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 15px rgba(255,204,0,0.3));
     }
 
-    .logo-container {
-      position: relative;
-      width: 280px;
-      margin: 0 auto;
-      transition: transform 0.3s ease;
+    .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* --- BUTTONS & CARDS --- */
+    .btn-neon {
+      padding: 18px 40px; border-radius: 50px; text-decoration: none;
+      font-weight: bold; color: black; background: var(--primary);
+      box-shadow: 0 0 20px var(--primary); transition: 0.3s;
+      display: inline-block; margin: 10px;
     }
 
-    .logo-container:hover {
-      transform: rotateY(10deg) rotateX(10deg);
+    .btn-neon:hover { transform: scale(1.1); box-shadow: 0 0 40px var(--primary); }
+
+    .feature-card {
+      background: var(--glass); backdrop-filter: blur(10px);
+      padding: 30px; border-radius: 20px; border: 1px solid var(--glass-border);
+      transition: 0.4s; text-align: center;
     }
 
-    .ape-logo {
-      width: 100%;
-      border-radius: 50%;
-      border: 5px solid var(--primary);
-      box-shadow: 0 0 50px rgba(255, 204, 0, 0.4);
-      animation: float 4s infinite ease-in-out;
+    .feature-card:hover { border-color: var(--secondary); transform: translateY(-10px); }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px; max-width: 1200px; margin: 50px auto; padding: 0 20px;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-20px) scale(1.02); }
-    }
-
-    /* Glowing Text */
-    .tagline {
-      font-size: 2.5em;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin: 30px 0;
-      color: var(--secondary);
-      text-shadow: 0 0 20px var(--secondary);
-      animation: neonPulse 2s infinite alternate;
-    }
-
-    @keyframes neonPulse {
-      from { filter: drop-shadow(0 0 5px var(--secondary)); }
-      to { filter: drop-shadow(0 0 20px var(--primary)); }
-    }
-
-    /* Buttons */
-    .btn-group { margin-top: 40px; }
-    
-    .btn {
-      display: inline-block;
-      padding: 18px 40px;
-      margin: 15px;
-      background: linear-gradient(135deg, var(--accent), var(--primary));
-      color: #000;
-      text-decoration: none;
-      font-weight: 900;
-      border-radius: 50px;
-      text-transform: uppercase;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
-    }
-
-    .btn:hover {
-      transform: scale(1.1) translateY(-5px);
-      box-shadow: 0 20px 40px rgba(255, 204, 0, 0.6);
-    }
-
-    /* Glassmorphism Features */
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-      padding: 50px 0;
-    }
-
-    .feature {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 24px;
-      width: 250px;
-      transition: 0.4s;
-    }
-
-    .feature:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-15px);
-      border-color: var(--primary);
-    }
-
-    /* Roadmap */
-    .roadmap-list {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: left;
-      background: rgba(0,0,0,0.4);
-      padding: 40px;
-      border-radius: 30px;
-      border-left: 4px solid var(--primary);
-    }
-
-    .roadmap-item {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    footer {
-      padding: 80px 20px;
-      background: linear-gradient(transparent, #000);
-    }
+    /* --- CUSTOM SCROLLBAR --- */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
   </style>
 </head>
 <body>
 
-  <div id="star-container"></div>
+  <div id="particles-js"></div>
+  <div class="cursor-glow" id="glow"></div>
 
-  <div class="rocket-wrapper">
-    <span style="font-size: 50px;">🚀</span>
+  <div class="container" style="text-align: center; padding-top: 80px;">
+    <header class="reveal">
+      <div class="logo-3d-container">
+        <div class="logo-3d" id="main-logo">
+          <div class="logo-face">
+            <img src="IMG_5116.jpeg" alt="$GAPE">
+          </div>
+          <div class="logo-face logo-face-back">🍌</div>
+        </div>
+      </div>
+      
+      <h1>$GAPE2287</h1>
+      <h2 class="tagline" style="color: var(--secondary); font-size: 2rem; margin: 20px 0;">JUNGLE GENESIS 🚀</h2>
+      
+      <div style="margin-top: 40px;">
+        <a href="https://pump.fun" class="btn-neon">BUY ON PUMP.FUN</a>
+        <a href="#" class="btn-neon" style="background: transparent; color: white; border: 1px solid white; box-shadow: none;">VIEW CHART</a>
+      </div>
+    </header>
+
+    <div class="grid reveal">
+      <div class="feature-card">
+        <div style="font-size: 3rem;">🦍</div>
+        <h3>Tribe Owned</h3>
+        <p>100% Community driven. No dev wallets.</p>
+      </div>
+      <div class="feature-card">
+        <div style="font-size: 3rem;">🔥</div>
+        <h3>Hyper Burn</h3>
+        <p>Banana fuel burns with every transaction.</p>
+      </div>
+      <div class="feature-card">
+        <div style="font-size: 3rem;">💎</div>
+        <h3>Diamond Paws</h3>
+        <p>Holding $GAPE earns you reflections.</p>
+      </div>
+    </div>
   </div>
 
-  <header>
-    <div class="logo-container">
-      <img src="IMG_5116.jpeg" alt="$GAPE2287" class="ape-logo">
-    </div>
-
-    <h2 class="tagline">The Great Ape Conquest 🍌</h2>
-    <h1>$GAPE2287</h1>
-    
-    <div class="btn-group">
-      <a href="https://pump.fun" class="btn">🚀 Grab Your Bags</a>
-      <a href="https://opensea.io/..." target="_blank" class="btn" style="background: #fff; color: #000;">🎨 View NFT</a>
-    </div>
-  </header>
-
-  <section>
-    <h2>FEEL THE ENERGY</h2>
-    <div class="features">
-      <div class="feature"><h3>🦍</h3><h4>Alpha Tribe</h4><p>No paper hands allowed in this jungle.</p></div>
-      <div class="feature"><h3>🌕</h3><h4>Lunar Aim</h4><p>The sky isn't the limit, it's the floor.</p></div>
-      <div class="feature"><h3>🔥</h3><h4>Burn Baby</h4><p>Deflationary banana mechanics.</p></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>THE MISSION</h2>
-    <div class="roadmap-list">
-      <div class="roadmap-item">📍 Phase 1: Jungle Breakout</div>
-      <div class="roadmap-item">📍 Phase 2: Global Domination</div>
-      <div class="roadmap-item">📍 Phase 3: Interstellar Bananas</div>
-    </div>
-  </section>
-
-  <footer>
-    <p>Join the movement. Ape in or stay on Earth.</p>
-    <div class="btn-group">
-      <a href="#">Twitter/X</a> | <a href="#">Telegram</a>
-    </div>
-  </footer>
-
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Generate Stars Dynamically
-    const container = document.getElementById('star-container');
-    for (let i = 0; i < 150; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      const size = Math.random() * 3 + 'px';
-      star.style.width = size;
-      star.style.height = size;
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
-      container.appendChild(star);
-    }
+    // 1. Mouse Glow Tracking
+    const glow = document.getElementById('glow');
+    window.addEventListener('mousemove', (e) => {
+      glow.style.setProperty('--x', e.clientX + 'px');
+      glow.style.setProperty('--y', e.clientY + 'px');
+    });
+
+    // 2. 3D Logo Interactive Tilt
+    const logo = document.getElementById('main-logo');
+    document.addEventListener('mousemove', (e) => {
+      let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+      let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+      logo.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // 3. Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 4. Particles.js Configuration
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#ffcc00" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: { enable: true, distance: 150, color: "#ffcc00", opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: "repulse" } }
+      }
+    });
   </script>
 </body>
 </html>
