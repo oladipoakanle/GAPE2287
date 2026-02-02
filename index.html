@@ -3,840 +3,242 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$GAPE2287 - Intergalactic Meme Coin</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>$GAPE2287 - Moon Bound</title>
   <style>
-    /* CSS Variables */
     :root {
       --primary: #ffcc00;
       --secondary: #00ffff;
       --accent: #ff4500;
-      --dark: #0b0c10;
-      --darker: #0a0a1f;
-      --neon-glow: 0 0 20px var(--primary), 0 0 40px var(--primary), 0 0 60px var(--primary);
-      --neon-blue: 0 0 20px var(--secondary), 0 0 40px var(--secondary);
-    }
-
-    /* Reset & Base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --bg-dark: #0b0c10;
     }
 
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: var(--darker);
-      color: white;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #050505;
+      color: #fff;
+      text-align: center;
       overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
     }
 
-    /* Animated Space Background */
-    .space-bg {
+    /* Animated Starfield Background */
+    #star-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -3;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.3) 0%, transparent 40%),
-        radial-gradient(circle at 70% 80%, rgba(255, 119, 0, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 40% 60%, rgba(120, 0, 255, 0.2) 0%, transparent 40%),
-        linear-gradient(180deg, var(--darker) 0%, #000 100%);
+      z-index: -1;
+      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     }
 
-    /* Particle System */
-    #particles-js {
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: moveStar var(--duration) linear infinite;
+    }
+
+    @keyframes moveStar {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100vh); }
+    }
+
+    /* Floating Rocket */
+    .rocket-wrapper {
       position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-    }
-
-    /* Floating Banana Containers */
-    .banana-float {
-      position: absolute;
-      font-size: 2rem;
-      animation: floatBanana 20s infinite linear;
-      z-index: -1;
-      filter: drop-shadow(0 0 10px var(--primary));
-    }
-
-    @keyframes floatBanana {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(100px, 100px) rotate(90deg); }
-      50% { transform: translate(200px, -50px) rotate(180deg); }
-      75% { transform: translate(-100px, 100px) rotate(270deg); }
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
+      right: 5%;
+      bottom: -100px;
       z-index: 10;
+      animation: floatRocket 8s infinite ease-in-out;
     }
 
-    /* Animated Header */
+    @keyframes floatRocket {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-80vh) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    /* Header & Logo */
     header {
-      padding: 80px 20px 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header-glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-      top: -300px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.2;
-      filter: blur(80px);
-      animation: pulseGlow 4s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      0% { transform: translateX(-50%) scale(0.8); opacity: 0.1; }
-      100% { transform: translateX(-50%) scale(1.2); opacity: 0.3; }
-    }
-
-    /* 3D Logo */
-    .logo-3d-container {
+      padding: 100px 20px;
       perspective: 1000px;
-      width: 300px;
-      height: 300px;
-      margin: 0 auto 40px;
+    }
+
+    .logo-container {
       position: relative;
+      width: 280px;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
     }
 
-    .logo-3d {
+    .logo-container:hover {
+      transform: rotateY(10deg) rotateX(10deg);
+    }
+
+    .ape-logo {
       width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: rotate3d 20s infinite linear;
-    }
-
-    .logo-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
       border-radius: 50%;
-      background: linear-gradient(45deg, var(--primary), var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backface-visibility: hidden;
-      box-shadow: var(--neon-glow);
-      overflow: hidden;
+      border: 5px solid var(--primary);
+      box-shadow: 0 0 50px rgba(255, 204, 0, 0.4);
+      animation: float 4s infinite ease-in-out;
     }
 
-    .logo-face img {
-      width: 90%;
-      height: 90%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.02); }
     }
 
-    .logo-face-front {
-      transform: translateZ(150px);
-    }
-
-    .logo-face-back {
-      transform: rotateY(180deg) translateZ(150px);
-      background: linear-gradient(45deg, var(--secondary), #00ccff);
-    }
-
-    @keyframes rotate3d {
-      0% { transform: rotateY(0deg) rotateX(10deg); }
-      100% { transform: rotateY(360deg) rotateX(10deg); }
-    }
-
-    /* Orbit Rings */
-    .orbit-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      animation: orbitSpin 15s infinite linear;
-    }
-
-    .ring-1 { width: 400px; height: 400px; animation-direction: reverse; }
-    .ring-2 { width: 450px; height: 450px; }
-    .ring-3 { width: 500px; height: 500px; animation-direction: reverse; }
-
-    @keyframes orbitSpin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    /* Headings */
-    h1 {
-      font-size: 4.5rem;
-      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 20px 0;
-      text-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      animation: titleGlow 3s infinite alternate;
-      letter-spacing: 2px;
-    }
-
-    @keyframes titleGlow {
-      0% { filter: drop-shadow(0 0 10px var(--primary)); }
-      50% { filter: drop-shadow(0 0 20px var(--secondary)); }
-      100% { filter: drop-shadow(0 0 30px var(--accent)); }
-    }
-
+    /* Glowing Text */
     .tagline {
-      font-size: 2.5rem;
+      font-size: 2.5em;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin: 30px 0;
       color: var(--secondary);
-      margin: 20px 0 40px;
-      text-shadow: var(--neon-blue);
-      animation: textFloat 6s ease-in-out infinite;
+      text-shadow: 0 0 20px var(--secondary);
+      animation: neonPulse 2s infinite alternate;
     }
 
-    @keyframes textFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    @keyframes neonPulse {
+      from { filter: drop-shadow(0 0 5px var(--secondary)); }
+      to { filter: drop-shadow(0 0 20px var(--primary)); }
     }
 
-    /* Animated Buttons */
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 40px 0;
-    }
-
-    .btn-neon {
-      padding: 18px 40px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 1;
-      min-width: 250px;
-      justify-content: center;
-    }
-
-    .btn-neon::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-      z-index: -1;
-    }
-
-    .btn-neon:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, var(--accent), var(--primary));
-      color: black;
-      box-shadow: 0 0 25px var(--accent);
-    }
-
-    .btn-secondary {
-      background: linear-gradient(45deg, var(--secondary), #00aaff);
-      color: white;
-      box-shadow: 0 0 25px var(--secondary);
-    }
-
-    .btn-tertiary {
-      background: linear-gradient(45deg, #ff00ff, #9900ff);
-      color: white;
-      box-shadow: 0 0 25px #ff00ff;
-    }
-
-    .btn-neon:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 0 40px;
-    }
-
-    /* Sections */
-    section {
-      padding: 100px 0;
-      position: relative;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 60px;
-      position: relative;
+    /* Buttons */
+    .btn-group { margin-top: 40px; }
+    
+    .btn {
       display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
+      padding: 18px 40px;
+      margin: 15px;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      color: #000;
+      text-decoration: none;
+      font-weight: 900;
+      border-radius: 50px;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
     }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    .btn:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255, 204, 0, 0.6);
     }
 
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
+    /* Glassmorphism Features */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      padding: 50px 0;
     }
 
-    .feature-card {
+    .feature {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 40px 30px;
-      text-align: center;
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
+      padding: 30px;
+      border-radius: 24px;
+      width: 250px;
+      transition: 0.4s;
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-      transform: translateX(-100%);
-    }
-
-    .feature-card:hover::before {
-      transform: translateX(100%);
-      transition: transform 0.6s ease;
-    }
-
-    .feature-card:hover {
+    .feature:hover {
+      background: rgba(255, 255, 255, 0.1);
       transform: translateY(-15px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(255, 204, 0, 0.2);
       border-color: var(--primary);
     }
 
-    .feature-icon {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      display: inline-block;
-      animation: iconFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes iconFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Roadmap Timeline */
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 80px auto 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--primary), var(--secondary));
-    }
-
-    .timeline-item {
-      margin-bottom: 80px;
-      position: relative;
-      width: 45%;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 55%;
-    }
-
-    .timeline-content {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 15px;
+    /* Roadmap */
+    .roadmap-list {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      background: rgba(0,0,0,0.4);
+      padding: 40px;
+      border-radius: 30px;
       border-left: 4px solid var(--primary);
+    }
+
+    .roadmap-item {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      padding-left: 20px;
       position: relative;
     }
 
-    .timeline-content:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
-    }
-
-    /* Tokenomics */
-    .tokenomics-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .token-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      border: 1px solid rgba(255, 204, 0, 0.2);
-    }
-
-    .token-value {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--primary);
-      margin: 20px 0;
-      text-shadow: 0 0 20px var(--primary);
-    }
-
-    /* Animated Counter */
-    .counter-container {
-      text-align: center;
-      margin: 80px 0;
-    }
-
-    .counter {
-      font-size: 5rem;
-      font-weight: bold;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
-    }
-
-    /* Footer */
     footer {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 80px 0 40px;
-      margin-top: 100px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-glow {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-      opacity: 0.1;
-      filter: blur(60px);
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-    }
-
-    .social-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .social-icon:hover {
-      background: var(--primary);
-      color: black;
-      transform: translateY(-10px) rotate(360deg);
-      box-shadow: 0 0 30px var(--primary);
-    }
-
-    /* Parallax Scrolling */
-    .parallax-layer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-      h1 { font-size: 3.5rem; }
-      .tagline { font-size: 2rem; }
-      .btn-container { flex-direction: column; align-items: center; }
-      .btn-neon { width: 90%; max-width: 400px; }
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2.8rem; }
-      .section-title { font-size: 2.8rem; }
-      .timeline::before { left: 30px; }
-      .timeline-item { width: 100%; left: 0 !important; padding-left: 60px; }
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--darker);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      border-radius: 5px;
+      padding: 80px 20px;
+      background: linear-gradient(transparent, #000);
     }
   </style>
 </head>
 <body>
-  <!-- Animated Space Background -->
-  <div class="space-bg"></div>
-  
-  <!-- Particle System Container -->
-  <div id="particles-js"></div>
 
-  <!-- Floating Bananas -->
-  <div class="banana-float" style="top:20%; left:5%; animation-delay: 0s;">🍌</div>
-  <div class="banana-float" style="top:60%; left:10%; animation-delay: -2s;">🍌</div>
-  <div class="banana-float" style="top:30%; left:90%; animation-delay: -5s;">🍌</div>
-  <div class="banana-float" style="top:80%; left:80%; animation-delay: -8s;">🍌</div>
-  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">🍌</div>
+  <div id="star-container"></div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <header>
-      <div class="header-glow"></div>
-      
-      <!-- 3D Logo -->
-      <div class="logo-3d-container">
-        <div class="orbit-ring ring-1"></div>
-        <div class="orbit-ring ring-2"></div>
-        <div class="orbit-ring ring-3"></div>
-        
-        <div class="logo-3d">
-          <div class="logo-face logo-face-front">
-            <img src="https://images.unsplash.com/photo-1593717191400-84f38ee95485?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="GAPE Logo">
-          </div>
-          <div class="logo-face logo-face-back">
-            <span style="font-size: 3rem; color: white;">🚀</span>
-          </div>
-        </div>
-      </div>
-
-      <h1 class="title-glitch">$GAPE2287</h1>
-      <h2 class="tagline">FROM JUNGLE TO JUPITER 🚀</h2>
-      <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
-        The first intergalactic meme coin powered by banana energy, quantum blockchain technology, and pure ape ambition. 
-        We're not just going to the moon - we're building a galactic empire.
-      </p>
-
-      <!-- Animated Counter -->
-      <div class="counter-container">
-        <div class="counter" id="marketCap">$42,690,000</div>
-        <p>Market Cap (Live)</p>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="btn-container">
-        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
-          <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
-        </a>
-        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
-          <i class="fas fa-crown"></i> VIEW NFTS
-        </a>
-        <a href="#roadmap" class="btn-neon btn-tertiary">
-          <i class="fas fa-map"></i> ROADMAP
-        </a>
-      </div>
-    </header>
-
-    <!-- Features Section -->
-    <section id="features">
-      <h2 class="section-title">APES STRONG TOGETHER</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🦍</div>
-          <h3>APE-DRIVEN</h3>
-          <p>Community-first governance with voting rights for all $GAPE holders. The jungle decides!</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3>HYPERDRIVE ENGINE</h3>
-          <p>Deflationary tokenomics with automatic liquidity generation and redistribution to holders.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🍌</div>
-          <h3>BANANA FUEL</h3>
-          <p>Earn passive bananas through our staking protocol. More bananas, more power.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌌</div>
-          <h3>GALACTIC VISION</h3>
-          <p>Metaverse integration, NFT collections, and play-to-earn games in development.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Roadmap Section -->
-    <section id="roadmap">
-      <h2 class="section-title">INTERGALACTIC ROADMAP</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3><i class="fas fa-seedling"></i> PHASE 1: JUNGLE GENESIS</h3>
-            <p>Token launch, community building, initial CEX listings, and website launch with 10,000+ apes.</p>
-            <div class="status" style="color: var(--primary);">COMPLETED 🚀</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3><i class="fas fa-city"></i> PHASE 2: CITY CONQUEST</h3>
-            <p>NFT collection drop, staking platform launch, partnerships with major meme projects.</p>
-            <div class="status" style="color: var(--secondary);">IN PROGRESS ⚡</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3><i class="fas fa-moon"></i> PHASE 3: MOON BASE</h3>
-            <p>Top 10 CEX listings, $GAPE merch store, metaverse land acquisition, mobile game beta.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3><i class="fas fa-globe-americas"></i> PHASE 4: GALACTIC DOMINION</h3>
-            <p>Interoperable blockchain, $GAPE ecosystem fund, charity initiatives, and galactic DAO.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tokenomics -->
-    <section id="tokenomics">
-      <h2 class="section-title">BANANA ECONOMICS</h2>
-      <div class="tokenomics-container">
-        <div class="token-card">
-          <h3>TOTAL SUPPLY</h3>
-          <div class="token-value">1B</div>
-          <p>1,000,000,000 $GAPE</p>
-        </div>
-        <div class="token-card">
-          <h3>LIQUIDITY</h3>
-          <div class="token-value">60%</div>
-          <p>Locked for 2 years</p>
-        </div>
-        <div class="token-card">
-          <h3>COMMUNITY</h3>
-          <div class="token-value">30%</div>
-          <p>Fair launch distribution</p>
-        </div>
-        <div class="token-card">
-          <h3>TEAM</h3>
-          <div class="token-value">10%</div>
-          <p>Vested over 3 years</p>
-        </div>
-      </div>
-    </section>
+  <div class="rocket-wrapper">
+    <span style="font-size: 50px;">🚀</span>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-glow"></div>
-    <div class="container">
-      <h2 class="section-title">JOIN THE BANANA REVOLUTION</h2>
-      
-      <div class="social-icons">
-        <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://telegram.org" class="social-icon" target="_blank"><i class="fab fa-telegram"></i></a>
-        <a href="https://discord.com" class="social-icon" target="_blank"><i class="fab fa-discord"></i></a>
-        <a href="https://reddit.com" class="social-icon" target="_blank"><i class="fab fa-reddit"></i></a>
-        <a href="https://tiktok.com" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
-      </div>
+  <header>
+    <div class="logo-container">
+      <img src="IMG_5116.jpeg" alt="$GAPE2287" class="ape-logo">
+    </div>
 
-      <p style="text-align: center; margin-top: 40px; font-size: 1.2rem; opacity: 0.8;">
-        🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE | DO YOUR OWN RESEARCH 🍌<br>
-        <span style="font-size: 1rem; opacity: 0.6;">© 2024 $GAPE2287. All bananas reserved.</span>
-      </p>
+    <h2 class="tagline">The Great Ape Conquest 🍌</h2>
+    <h1>$GAPE2287</h1>
+    
+    <div class="btn-group">
+      <a href="https://pump.fun" class="btn">🚀 Grab Your Bags</a>
+      <a href="https://opensea.io/..." target="_blank" class="btn" style="background: #fff; color: #000;">🎨 View NFT</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>FEEL THE ENERGY</h2>
+    <div class="features">
+      <div class="feature"><h3>🦍</h3><h4>Alpha Tribe</h4><p>No paper hands allowed in this jungle.</p></div>
+      <div class="feature"><h3>🌕</h3><h4>Lunar Aim</h4><p>The sky isn't the limit, it's the floor.</p></div>
+      <div class="feature"><h3>🔥</h3><h4>Burn Baby</h4><p>Deflationary banana mechanics.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>THE MISSION</h2>
+    <div class="roadmap-list">
+      <div class="roadmap-item">📍 Phase 1: Jungle Breakout</div>
+      <div class="roadmap-item">📍 Phase 2: Global Domination</div>
+      <div class="roadmap-item">📍 Phase 3: Interstellar Bananas</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Join the movement. Ape in or stay on Earth.</p>
+    <div class="btn-group">
+      <a href="#">Twitter/X</a> | <a href="#">Telegram</a>
     </div>
   </footer>
 
-  <!-- JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // Initialize Particle System
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 150, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffcc00" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5, random: true },
-        size: { value: 3, random: true },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#00ffff",
-          opacity: 0.2,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
-        }
-      }
-    });
-
-    // Animated Counter
-    function animateCounter(elementId, start, end, duration) {
-      let obj = document.getElementById(elementId);
-      let startTime = null;
-      
-      function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        let timeElapsed = currentTime - startTime;
-        let progress = Math.min(timeElapsed / duration, 1);
-        
-        let value = Math.floor(progress * (end - start) + start);
-        obj.innerHTML = '$' + value.toLocaleString();
-        
-        if (progress < 1) {
-          requestAnimationFrame(animation);
-        }
-      }
-      
-      requestAnimationFrame(animation);
+    // Generate Stars Dynamically
+    const container = document.getElementById('star-container');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 3 + 'px';
+      star.style.width = size;
+      star.style.height = size;
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+      container.appendChild(star);
     }
-
-    // Start counter animation when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      // Simulate market cap counter
-      let currentValue = 42690000;
-      setInterval(() => {
-        let randomChange = Math.floor(Math.random() * 10000) - 5000;
-        currentValue += randomChange;
-        if (currentValue < 40000000) currentValue = 40000000;
-        document.getElementById('marketCap').textContent = '$' + currentValue.toLocaleString();
-      }, 3000);
-      
-      // Add hover effects to all feature cards
-      document.querySelectorAll('.feature-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-15px) scale(1.05)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-      
-      // Parallax scrolling effect
-      window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.parallax-layer');
-        
-        parallaxElements.forEach(element => {
-          const speed = element.dataset.speed;
-          const yPos = -(scrolled * speed);
-          element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-        });
-      });
-      
-      // Banana animation enhancement
-      const bananas = document.querySelectorAll('.banana-float');
-      bananas.forEach(banana => {
-        banana.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.5) rotate(180deg)';
-          this.style.filter = 'drop-shadow(0 0 20px gold)';
-        });
-        
-        banana.addEventListener('mouseleave', function() {
-          this.style.transform = '';
-          this.style.filter = 'drop-shadow(0 0 10px var(--primary))';
-        });
-      });
-      
-      // Glitch effect on title
-      const title = document.querySelector('.title-glitch');
-      setInterval(() => {
-        if (Math.random() > 0.95) {
-          title.style.textShadow = '2px 2px 0 #ff00ff, -2px -2px 0 #00ffff';
-          setTimeout(() => {
-            title.style.textShadow = '';
-          }, 100);
-        }
-      }, 500);
-    });
-
-    // Typewriter effect for tagline
-    const tagline = document.querySelector('.tagline');
-    const originalText = tagline.textContent;
-    tagline.textContent = '';
-    let i = 0;
-    
-    function typeWriter() {
-      if (i < originalText.length) {
-        tagline.textContent += originalText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-      }
-    }
-    
-    // Start typewriter after page load
-    setTimeout(typeWriter, 1000);
   </script>
 </body>
 </html>
