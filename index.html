@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>$GAPE2287 - Intergalactic Meme Coin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* CSS Variables */
     :root {
-      --primary: #ffcc00;
-      --secondary: #00ffff;
-      --accent: #ff4500;
+      --primary: #d4b04a; /* muted gold */
+      --secondary: #7fb5b8; /* desaturated cyan */
+      --accent: #8c3b2f; /* rusty red */
       --dark: #0b0c10;
       --darker: #0a0a1f;
-      --neon-glow: 0 0 20px var(--primary), 0 0 40px var(--primary), 0 0 60px var(--primary);
-      --neon-blue: 0 0 20px var(--secondary), 0 0 40px var(--secondary);
+      --grit: rgba(0,0,0,0.35);
     }
 
     /* Reset & Base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Arial', sans-serif;
       background-color: var(--darker);
-      color: white;
+      color: #e8e6e0;
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
@@ -35,36 +29,24 @@
 
     /* Animated Space Background */
     .space-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -3;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.3) 0%, transparent 40%),
-        radial-gradient(circle at 70% 80%, rgba(255, 119, 0, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 40% 60%, rgba(120, 0, 255, 0.2) 0%, transparent 40%),
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(120,119,198,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(255,119,0,0.12) 0%, transparent 40%),
+        radial-gradient(circle at 40% 60%, rgba(120,0,255,0.08) 0%, transparent 40%),
         linear-gradient(180deg, var(--darker) 0%, #000 100%);
+      filter: contrast(0.95) saturate(0.9);
     }
 
     /* Particle System */
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-    }
+    #particles-js { position: fixed; width: 100%; height: 100%; z-index: -2; }
 
     /* Floating Banana Containers */
     .banana-float {
-      position: absolute;
-      font-size: 2rem;
-      animation: floatBanana 20s infinite linear;
-      z-index: -1;
-      filter: drop-shadow(0 0 10px var(--primary));
+      position: absolute; font-size: 2rem; animation: floatBanana 20s infinite linear;
+      z-index: -1; filter: drop-shadow(0 0 8px rgba(0,0,0,0.6));
+      opacity: 0.95;
     }
-
     @keyframes floatBanana {
       0%, 100% { transform: translate(0, 0) rotate(0deg); }
       25% { transform: translate(100px, 100px) rotate(90deg); }
@@ -73,441 +55,202 @@
     }
 
     /* Main Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 10;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
     /* Animated Header */
-    header {
-      padding: 80px 20px 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
+    header { padding: 80px 20px 60px; text-align: center; position: relative; overflow: hidden; }
     .header-glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-      top: -300px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.2;
-      filter: blur(80px);
-      animation: pulseGlow 4s infinite alternate;
+      position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(140,59,47,0.18) 0%, transparent 70%);
+      top: -300px; left: 50%; transform: translateX(-50%); opacity: 0.14; filter: blur(60px);
     }
 
-    @keyframes pulseGlow {
-      0% { transform: translateX(-50%) scale(0.8); opacity: 0.1; }
-      100% { transform: translateX(-50%) scale(1.2); opacity: 0.3; }
-    }
-
-    /* 3D Logo */
-    .logo-3d-container {
-      perspective: 1000px;
-      width: 300px;
-      height: 300px;
-      margin: 0 auto 40px;
-      position: relative;
-    }
-
-    .logo-3d {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: rotate3d 20s infinite linear;
-    }
-
+    /* LOGO (now stationary + gritty treatment) */
+    .logo-3d-container { width: 300px; height: 300px; margin: 0 auto 40px; position: relative; }
+    /* removed perspective + rotation — logo is stationary now */
+    .logo-3d { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
     .logo-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(45deg, var(--primary), var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backface-visibility: hidden;
-      box-shadow: var(--neon-glow);
-      overflow: hidden;
+      position: absolute; width: 100%; height: 100%; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; backface-visibility: hidden;
+      overflow: hidden; background: radial-gradient(ellipse at center, rgba(0,0,0,0.25), transparent 60%);
+      box-shadow: inset 0 8px 30px rgba(0,0,0,0.6), 0 8px 30px rgba(0,0,0,0.6);
+      border: 3px solid rgba(255,255,255,0.03);
     }
 
-    .logo-face svg {
-      width: 90%;
-      height: 90%;
-      border-radius: 50%;
+    /* static raster logo - use the provided logo file (place it in the repo or /assets/) */
+    .logo-static {
+      max-width: 86%; max-height: 86%; object-fit: contain;
+      filter: contrast(1.02) saturate(0.85) drop-shadow(0 12px 18px rgba(0,0,0,0.7));
+      image-rendering: optimizeQuality;
+      mix-blend-mode: normal;
     }
 
-    .logo-face-front {
-      transform: translateZ(150px);
-    }
-
-    .logo-face-back {
-      transform: rotateY(180deg) translateZ(150px);
-      background: linear-gradient(45deg, var(--secondary), #00ccff);
-    }
-
-    @keyframes rotate3d {
-      0% { transform: rotateY(0deg) rotateX(10deg); }
-      100% { transform: rotateY(360deg) rotateX(10deg); }
-    }
-
-    /* Orbit Rings */
+    /* Orbit Rings (kept subtle but less shiny) */
     .orbit-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      animation: orbitSpin 15s infinite linear;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      border: 2px dashed rgba(255,255,255,0.06); border-radius: 50%;
+      animation: orbitSpin 25s infinite linear;
+      opacity: 0.5;
     }
-
-    .ring-1 { width: 400px; height: 400px; animation-direction: reverse; }
-    .ring-2 { width: 450px; height: 450px; }
-    .ring-3 { width: 500px; height: 500px; animation-direction: reverse; }
-
+    .ring-1 { width: 380px; height: 380px; animation-direction: reverse; }
+    .ring-2 { width: 430px; height: 430px; }
+    .ring-3 { width: 480px; height: 480px; animation-direction: reverse; }
     @keyframes orbitSpin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
+      0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    /* Headings */
+    /* Gritty Title */
     h1 {
-      font-size: 4.5rem;
-      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 20px 0;
-      text-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      animation: titleGlow 3s infinite alternate;
-      letter-spacing: 2px;
+      font-family: "Impact", "Oswald", Arial, sans-serif;
+      font-size: 4.2rem;
+      color: #ddd;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 18px 0;
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+      text-shadow:
+        0 1px 0 rgba(0,0,0,0.85),
+        1px 2px 0 rgba(0,0,0,0.6),
+        -1px 1px 0 rgba(255,255,255,0.02);
     }
-
-    @keyframes titleGlow {
-      0% { filter: drop-shadow(0 0 10px var(--primary)); }
-      50% { filter: drop-shadow(0 0 20px var(--secondary)); }
-      100% { filter: drop-shadow(0 0 30px var(--accent)); }
+    /* gritty worn texture overlay using pseudo element */
+    h1::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: linear-gradient(transparent 40%, rgba(0,0,0,0.06) 41%, transparent 42%), repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 6px);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      opacity: 0.8;
     }
 
     .tagline {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: var(--secondary);
-      margin: 20px 0 40px;
-      text-shadow: var(--neon-blue);
-      animation: textFloat 6s ease-in-out infinite;
+      margin: 14px 0 30px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      letter-spacing: 1px;
     }
 
-    @keyframes textFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    header p { font-size: 1.15rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6; opacity: 0.95; color: #dcd8d0; }
 
-    /* Animated Buttons */
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 40px 0;
-    }
-
+    /* — GRITTY BUTTONS (buttons under bio) — */
+    .btn-container { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin: 30px 0 0; }
     .btn-neon {
-      padding: 18px 40px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 1;
-      min-width: 250px;
-      justify-content: center;
+      padding: 14px 32px; font-size: 1.05rem; font-weight: 700; text-decoration: none;
+      border-radius: 8px; position: relative; overflow: hidden; display: inline-flex; align-items:center; gap:10px;
+      min-width: 220px; justify-content: center;
+      background: linear-gradient(180deg, #2b2b2b 0%, #161616 100%);
+      color: #e9e6de; border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.03);
+      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+      letter-spacing: 0.6px;
+      backdrop-filter: none;
     }
-
-    .btn-neon::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-      z-index: -1;
-    }
-
-    .btn-neon:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, var(--accent), var(--primary));
-      color: black;
-      box-shadow: 0 0 25px var(--accent);
-    }
-
-    .btn-secondary {
-      background: linear-gradient(45deg, var(--secondary), #00aaff);
-      color: white;
-      box-shadow: 0 0 25px var(--secondary);
-    }
-
-    .btn-tertiary {
-      background: linear-gradient(45deg, #ff00ff, #9900ff);
-      color: white;
-      box-shadow: 0 0 25px #ff00ff;
-    }
-
+    /* remove neon sheen and add subtle grit */
+    .btn-neon::before { content: ""; position: absolute; inset: 0; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><rect width="8" height="8" fill="%23000000" opacity="0"/><circle cx="1" cy="1" r="0.6" fill="%23ffffff" opacity="0.02"/></svg>'); mix-blend-mode: overlay; pointer-events:none; opacity:0.7; }
     .btn-neon:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 0 40px;
+      transform: translateY(-4px) scale(1.02) rotate(-0.6deg);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.75), inset 0 2px 0 rgba(255,255,255,0.02);
+      filter: brightness(1.06) saturate(0.95);
     }
+
+    /* Button color variants (gritty) */
+    .btn-primary { background: linear-gradient(180deg, #53372f 0%, #2b1b17 100%); color: #f1e7d0; border: 1px solid rgba(255,255,255,0.03); }
+    .btn-secondary { background: linear-gradient(180deg, #254c4f 0%, #12292a 100%); color: #dff2f2; border: 1px solid rgba(255,255,255,0.03); }
+    .btn-tertiary { background: linear-gradient(180deg, #4b2b4b 0%, #211021 100%); color: #f3dbff; border: 1px solid rgba(255,255,255,0.03); }
 
     /* Sections */
-    section {
-      padding: 100px 0;
-      position: relative;
-    }
+    section { padding: 100px 0; position: relative; }
+    .section-title { text-align:center; font-size: 3.2rem; margin-bottom: 40px; position: relative; display:inline-block; left:50%; transform:translateX(-50%); color:#e7e2d9; }
+    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity:0.9; }
 
-    .section-title {
-      text-align: center;
-      font-size: 3.5rem;
-      margin-bottom: 60px;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    /* Features Grid etc. (kept mostly same, with slightly darker cards) */
+    .features-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:40px; margin-top:40px; }
+    .feature-card { background: rgba(0,0,0,0.45); border-radius:14px; padding: 30px; text-align:center; border: 1px solid rgba(255,255,255,0.04); transition: all 0.35s ease; position: relative; overflow:hidden; }
+    .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-color: rgba(212,176,74,0.12); }
+    .feature-icon { font-size: 3rem; margin-bottom: 18px; display:inline-block; }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    }
-
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 40px 30px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-      transform: translateX(-100%);
-    }
-
-    .feature-card:hover::before {
-      transform: translateX(100%);
-      transition: transform 0.6s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(255, 204, 0, 0.2);
-      border-color: var(--primary);
-    }
-
-    .feature-icon {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      display: inline-block;
-      animation: iconFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes iconFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Roadmap Timeline */
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 80px auto 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--primary), var(--secondary));
-    }
-
-    .timeline-item {
-      margin-bottom: 80px;
-      position: relative;
-      width: 45%;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 55%;
-    }
-
-    .timeline-content {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 15px;
-      border-left: 4px solid var(--primary);
-      position: relative;
-    }
-
-    .timeline-content:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
-    }
+    /* Roadmap Timeline (unchanged look but toned down) */
+    .timeline { position: relative; max-width:800px; margin: 60px auto 0; }
+    .timeline::before { content:''; position:absolute; left:50%; transform:translateX(-50%); width:4px; height:100%; background: linear-gradient(180deg, rgba(212,176,74,0.9), rgba(127,181,184,0.9)); opacity:0.45; }
+    .timeline-item { margin-bottom: 60px; position: relative; width:45%; }
+    .timeline-item:nth-child(odd) { left: 0; }
+    .timeline-item:nth-child(even) { left: 55%; }
+    .timeline-content { background: rgba(0,0,0,0.45); padding: 22px; border-radius:12px; border-left: 4px solid var(--primary); }
 
     /* Animated Counter */
-    .counter-container {
-      text-align: center;
-      margin: 80px 0;
-    }
-
-    .counter {
-      font-size: 5rem;
-      font-weight: bold;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
-    }
+    .counter-container { text-align:center; margin: 60px 0; }
+    .counter { font-size: 4.2rem; font-weight:700; color: transparent; background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; }
 
     /* Footer */
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 80px 0 40px;
-      margin-top: 100px;
-      position: relative;
-      overflow: hidden;
-    }
+    footer { background: rgba(0,0,0,0.8); padding: 80px 0 40px; margin-top: 80px; position: relative; overflow: hidden; }
+    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacity:0.08; filter: blur(60px); }
 
-    .footer-glow {
-      position: absolute;
-      top: -100px;
+    /* Footer social icons are hidden because the icons are centered on page now */
+    .footer .social-icons { display: none; }
+
+    /* Centered social icons (X & Telegram) - fixed center of page */
+    .social-center {
+      position: fixed;
       left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-      opacity: 0.1;
-      filter: blur(60px);
-    }
-
-    .social-icons {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 60;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-    }
-
-    .social-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
+      gap: 18px;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      background: rgba(10,10,12,0.45);
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.035);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
-
-    .social-icon:hover {
-      background: var(--primary);
-      color: black;
-      transform: translateY(-10px) rotate(360deg);
-      box-shadow: 0 0 30px var(--primary);
+    .social-center .social-icon {
+      width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+      color: #eae6df; font-size:1.2rem; text-decoration:none; transition: all 0.22s ease;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .social-center .social-icon:hover {
+      transform: translateY(-6px) rotate(-8deg);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
     }
 
     /* Parallax Scrolling */
-    .parallax-layer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
+    .parallax-layer { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
     /* Responsive */
     @media (max-width: 992px) {
-      h1 { font-size: 3.5rem; }
-      .tagline { font-size: 2rem; }
-      .btn-container { flex-direction: column; align-items: center; }
-      .btn-neon { width: 90%; max-width: 400px; }
+      h1 { font-size: 3.2rem; }
+      .tagline { font-size: 1.6rem; }
+      .btn-container { flex-direction: column; align-items:center; gap:14px; }
+      .btn-neon { width: 90%; max-width: 420px; }
+      .social-center { transform: translate(-50%, -45%); gap: 12px; }
     }
-
     @media (max-width: 768px) {
-      h1 { font-size: 2.8rem; }
-      .section-title { font-size: 2.8rem; }
+      h1 { font-size: 2.4rem; }
+      .section-title { font-size: 2.2rem; }
       .timeline::before { left: 30px; }
-      .timeline-item { width: 100%; left: 0 !important; padding-left: 60px; }
+      .timeline-item { width:100%; left:0 !important; padding-left: 60px; }
+      .social-center { top: auto; bottom: 28px; transform: translateX(-50%); }
     }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--darker);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      border-radius: 5px;
-    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--darker); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 5px; }
   </style>
 </head>
 <body>
   <!-- Animated Space Background -->
   <div class="space-bg"></div>
-  
+
   <!-- Particle System Container -->
   <div id="particles-js"></div>
 
@@ -516,51 +259,39 @@
   <div class="banana-float" style="top:60%; left:10%; animation-delay: -2s;">🍌</div>
   <div class="banana-float" style="top:30%; left:90%; animation-delay: -5s;">🍌</div>
   <div class="banana-float" style="top:80%; left:80%; animation-delay: -8s;">🍌</div>
-  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">����</div>
+  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">🍌</div>
+
+  <!-- Centered social icons (X & Telegram) -->
+  <div class="social-center" aria-hidden="false">
+    <!-- X (Twitter) -->
+    <a class="social-icon" href="https://x.com/gape2287?s=21" target="_blank" rel="noopener noreferrer" title="X — GAPE2287">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+    <!-- Telegram -->
+    <a class="social-icon" href="https://t.me/GAPE2287" target="_blank" rel="noopener noreferrer" title="Telegram — GAPE2287">
+      <i class="fab fa-telegram-plane"></i>
+    </a>
+  </div>
 
   <!-- Main Content -->
   <div class="container">
     <header>
       <div class="header-glow"></div>
-      
-      <!-- 3D Logo -->
-      <div class="logo-3d-container">
+
+      <!-- Stationary Logo (use the provided logo file, e.g. place it as /IMG_5116.jpeg) -->
+      <div class="logo-3d-container" aria-hidden="true">
         <div class="orbit-ring ring-1"></div>
         <div class="orbit-ring ring-2"></div>
         <div class="orbit-ring ring-3"></div>
-        
+
         <div class="logo-3d">
-          <!-- Inline SVG logo (reliable, no external requests) -->
-          <div class="logo-face logo-face-front" aria-hidden="true">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GAPE Logo">
-              <defs>
-                <radialGradient id="g1" cx="30%" cy="30%" r="80%">
-                  <stop offset="0%" stop-color="#ffcc00"/>
-                  <stop offset="70%" stop-color="#ff4500"/>
-                </radialGradient>
-                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="8" result="b"/>
-                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-
-              <!-- outer circle -->
-              <circle cx="100" cy="100" r="92" fill="url(#g1)" filter="url(#glow)" stroke="#fff" stroke-width="4"/>
-
-              <!-- rocket shape -->
-              <g transform="translate(100,90) scale(0.9)">
-                <path d="M0,-40 L12,-8 A24,24 0 0 1 0,28 A24,24 0 0 1 -12,-8 Z" fill="#fff"/>
-                <rect x="-5" y="-10" width="10" height="12" rx="2" fill="#00ffff"/>
-                <circle cx="0" cy="0" r="3" fill="#ff00ff"/>
-                <path d="M-8,28 C-6,36 6,36 8,28" fill="#ffcc00"/>
-              </g>
-
-              <!-- small text -->
-              <text x="100" y="170" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="middle" opacity="0.9">GAPE2287 🚀</text>
-            </svg>
+          <div class="logo-face logo-face-front">
+            <!-- Using the exact filename you uploaded -->
+            <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
           </div>
 
-          <div class="logo-face logo-face-back">
+          <div class="logo-face logo-face-back" style="display:none;">
+            <!-- kept invisible/backface in case needed -->
             <span style="font-size: 3rem; color: white;">🚀</span>
           </div>
         </div>
@@ -568,17 +299,17 @@
 
       <h1 class="title-glitch">$GAPE2287</h1>
       <h2 class="tagline">FROM JUNGLE TO JUPITER 🚀</h2>
-      <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
-        The first intergalactic meme coin powered by banana energy, quantum blockchain technology, and pure ape ambition. 
+      <p>
+        The first intergalactic meme coin powered by banana energy, quantum blockchain technology, and pure ape ambition.
         We're not just going to the moon - we're building a galactic empire.
       </p>
 
-      <!-- Action Buttons -->
+      <!-- Action Buttons (gritty look) -->
       <div class="btn-container">
-        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
+        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
         </a>
-        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
+        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-crown"></i> VIEW NFTS
         </a>
         <a href="#roadmap" class="btn-neon btn-tertiary">
@@ -653,10 +384,11 @@
     <div class="footer-glow"></div>
     <div class="container">
       <h2 class="section-title">JOIN THE BANANA REVOLUTION</h2>
-      
-      <div class="social-icons">
-        <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://telegram.org" class="social-icon" target="_blank"><i class="fab fa-telegram"></i></a>
+
+      <!-- footer icons intentionally hidden because centered icons are used -->
+      <div class="social-icons" aria-hidden="true">
+        <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/GAPE2287" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
       </div>
 
       <p style="text-align: center; margin-top: 40px; font-size: 1.2rem; opacity: 0.8;">
@@ -674,15 +406,15 @@
     particlesJS('particles-js', {
       particles: {
         number: { value: 150, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffcc00" },
+        color: { value: "#d4b04a" },
         shape: { type: "circle" },
-        opacity: { value: 0.5, random: true },
+        opacity: { value: 0.45, random: true },
         size: { value: 3, random: true },
         line_linked: {
           enable: true,
           distance: 150,
-          color: "#00ffff",
-          opacity: 0.2,
+          color: "#7fb5b8",
+          opacity: 0.15,
           width: 1
         },
         move: {
@@ -697,11 +429,7 @@
       },
       interactivity: {
         detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
-        }
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true }
       }
     });
 
@@ -709,68 +437,68 @@
       // Add hover effects to all feature cards
       document.querySelectorAll('.feature-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-15px) scale(1.05)';
+          this.style.transform = 'translateY(-10px)';
         });
-        
         card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
+          this.style.transform = '';
         });
       });
-      
+
       // Parallax scrolling effect
       window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.parallax-layer');
-        
         parallaxElements.forEach(element => {
-          const speed = element.dataset.speed;
+          const speed = parseFloat(element.dataset.speed || "0.2");
           const yPos = -(scrolled * speed);
           element.style.transform = `translate3d(0, ${yPos}px, 0)`;
         });
       });
-      
-      // Banana animation enhancement
+
+      // Banana hover enhancement
       const bananas = document.querySelectorAll('.banana-float');
       bananas.forEach(banana => {
         banana.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.5) rotate(180deg)';
-          this.style.filter = 'drop-shadow(0 0 20px gold)';
+          this.style.transform += ' scale(1.35) rotate(180deg)';
+          this.style.filter = 'drop-shadow(0 0 20px rgba(212,176,74,0.9))';
         });
-        
         banana.addEventListener('mouseleave', function() {
+          // remove scale transform but keep float animation natural
           this.style.transform = '';
-          this.style.filter = 'drop-shadow(0 0 10px var(--primary))';
+          this.style.filter = 'drop-shadow(0 0 8px rgba(0,0,0,0.6))';
         });
       });
-      
-      // Glitch effect on title
+
+      // Subtle title glitch / grit flicker
       const title = document.querySelector('.title-glitch');
       setInterval(() => {
-        if (Math.random() > 0.95) {
-          title.style.textShadow = '2px 2px 0 #ff00ff, -2px -2px 0 #00ffff';
+        if (Math.random() > 0.97) {
+          title.style.transform = 'translateX(-2px) skewX(-1deg)';
+          title.style.opacity = '0.94';
           setTimeout(() => {
-            title.style.textShadow = '';
-          }, 100);
+            title.style.transform = '';
+            title.style.opacity = '';
+          }, 140);
         }
-      }, 500);
+      }, 600);
     });
 
-    // Typewriter effect for tagline
-    const tagline = document.querySelector('.tagline');
-    const originalText = tagline.textContent;
-    tagline.textContent = '';
-    let i = 0;
-    
-    function typeWriter() {
-      if (i < originalText.length) {
-        tagline.textContent += originalText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
+    // Typewriter effect for tagline (keeps same behavior)
+    (function() {
+      const tagline = document.querySelector('.tagline');
+      if (!tagline) return;
+      const originalText = tagline.textContent;
+      tagline.textContent = '';
+      let i = 0;
+      function typeWriter() {
+        if (i < originalText.length) {
+          tagline.textContent += originalText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 40);
+        }
       }
-    }
-    
-    // Start typewriter after page load
-    setTimeout(typeWriter, 1000);
+      setTimeout(typeWriter, 800);
+    })();
   </script>
 </body>
 </html>
