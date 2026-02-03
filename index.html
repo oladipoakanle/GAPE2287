@@ -516,7 +516,7 @@
   <div class="banana-float" style="top:60%; left:10%; animation-delay: -2s;">🍌</div>
   <div class="banana-float" style="top:30%; left:90%; animation-delay: -5s;">🍌</div>
   <div class="banana-float" style="top:80%; left:80%; animation-delay: -8s;">🍌</div>
-  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">🍌</div>
+  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">����</div>
 
   <!-- Main Content -->
   <div class="container">
@@ -573,12 +573,6 @@
         We're not just going to the moon - we're building a galactic empire.
       </p>
 
-      <!-- Animated Counter -->
-      <div class="counter-container">
-        <div class="counter" id="marketCap">$42,690,000</div>
-        <p>Market Cap (Live)</p>
-      </div>
-
       <!-- Action Buttons -->
       <div class="btn-container">
         <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
@@ -627,7 +621,7 @@
         <div class="timeline-item">
           <div class="timeline-content">
             <h3><i class="fas fa-seedling"></i> PHASE 1: JUNGLE GENESIS</h3>
-            <p>Token launch, community building, initial CEX listings, and website launch with 10,000+ apes.</p>
+            <p>Community building and website launch.</p>
             <div class="status" style="color: var(--primary);">COMPLETED 🚀</div>
           </div>
         </div>
@@ -663,14 +657,11 @@
       <div class="social-icons">
         <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="https://telegram.org" class="social-icon" target="_blank"><i class="fab fa-telegram"></i></a>
-        <a href="https://discord.com" class="social-icon" target="_blank"><i class="fab fa-discord"></i></a>
-        <a href="https://reddit.com" class="social-icon" target="_blank"><i class="fab fa-reddit"></i></a>
-        <a href="https://tiktok.com" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
       </div>
 
       <p style="text-align: center; margin-top: 40px; font-size: 1.2rem; opacity: 0.8;">
         🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE | DO YOUR OWN RESEARCH 🍌<br>
-        <span style="font-size: 1rem; opacity: 0.6;">© 2024 $GAPE2287. All bananas reserved.</span>
+        <span style="font-size: 1rem; opacity: 0.6;">© 2026 $GAPE2287. All bananas reserved.</span>
       </p>
     </div>
   </footer>
@@ -714,38 +705,7 @@
       }
     });
 
-    // Animated Counter
-    function animateCounter(elementId, start, end, duration) {
-      let obj = document.getElementById(elementId);
-      let startTime = null;
-      
-      function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        let timeElapsed = currentTime - startTime;
-        let progress = Math.min(timeElapsed / duration, 1);
-        
-        let value = Math.floor(progress * (end - start) + start);
-        obj.innerHTML = '$' + value.toLocaleString();
-        
-        if (progress < 1) {
-          requestAnimationFrame(animation);
-        }
-      }
-      
-      requestAnimationFrame(animation);
-    }
-
-    // Start counter animation when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      // Simulate market cap counter
-      let currentValue = 42690000;
-      setInterval(() => {
-        let randomChange = Math.floor(Math.random() * 10000) - 5000;
-        currentValue += randomChange;
-        if (currentValue < 40000000) currentValue = 40000000;
-        document.getElementById('marketCap').textContent = '$' + currentValue.toLocaleString();
-      }, 3000);
-      
       // Add hover effects to all feature cards
       document.querySelectorAll('.feature-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
