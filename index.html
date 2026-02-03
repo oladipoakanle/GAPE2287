@@ -138,12 +138,10 @@
       overflow: hidden;
     }
 
-    .logo-face img {
+    .logo-face svg {
       width: 90%;
       height: 90%;
       border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
     }
 
     .logo-face-front {
@@ -402,30 +400,6 @@
       box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
     }
 
-    /* Tokenomics */
-    .tokenomics-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .token-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      border: 1px solid rgba(255, 204, 0, 0.2);
-    }
-
-    .token-value {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--primary);
-      margin: 20px 0;
-      text-shadow: 0 0 20px var(--primary);
-    }
-
     /* Animated Counter */
     .counter-container {
       text-align: center;
@@ -556,9 +530,36 @@
         <div class="orbit-ring ring-3"></div>
         
         <div class="logo-3d">
-          <div class="logo-face logo-face-front">
-            <img src="https://images.unsplash.com/photo-1593717191400-84f38ee95485?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="GAPE Logo">
+          <!-- Inline SVG logo (reliable, no external requests) -->
+          <div class="logo-face logo-face-front" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GAPE Logo">
+              <defs>
+                <radialGradient id="g1" cx="30%" cy="30%" r="80%">
+                  <stop offset="0%" stop-color="#ffcc00"/>
+                  <stop offset="70%" stop-color="#ff4500"/>
+                </radialGradient>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="8" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <!-- outer circle -->
+              <circle cx="100" cy="100" r="92" fill="url(#g1)" filter="url(#glow)" stroke="#fff" stroke-width="4"/>
+
+              <!-- rocket shape -->
+              <g transform="translate(100,90) scale(0.9)">
+                <path d="M0,-40 L12,-8 A24,24 0 0 1 0,28 A24,24 0 0 1 -12,-8 Z" fill="#fff"/>
+                <rect x="-5" y="-10" width="10" height="12" rx="2" fill="#00ffff"/>
+                <circle cx="0" cy="0" r="3" fill="#ff00ff"/>
+                <path d="M-8,28 C-6,36 6,36 8,28" fill="#ffcc00"/>
+              </g>
+
+              <!-- small text -->
+              <text x="100" y="170" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="middle" opacity="0.9">GAPE2287 🚀</text>
+            </svg>
           </div>
+
           <div class="logo-face logo-face-back">
             <span style="font-size: 3rem; color: white;">🚀</span>
           </div>
@@ -648,33 +649,6 @@
             <h3><i class="fas fa-globe-americas"></i> PHASE 4: GALACTIC DOMINION</h3>
             <p>Interoperable blockchain, $GAPE ecosystem fund, charity initiatives, and galactic DAO.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tokenomics -->
-    <section id="tokenomics">
-      <h2 class="section-title">BANANA ECONOMICS</h2>
-      <div class="tokenomics-container">
-        <div class="token-card">
-          <h3>TOTAL SUPPLY</h3>
-          <div class="token-value">1B</div>
-          <p>1,000,000,000 $GAPE</p>
-        </div>
-        <div class="token-card">
-          <h3>LIQUIDITY</h3>
-          <div class="token-value">60%</div>
-          <p>Locked for 2 years</p>
-        </div>
-        <div class="token-card">
-          <h3>COMMUNITY</h3>
-          <div class="token-value">30%</div>
-          <p>Fair launch distribution</p>
-        </div>
-        <div class="token-card">
-          <h3>TEAM</h3>
-          <div class="token-value">10%</div>
-          <p>Vested over 3 years</p>
         </div>
       </div>
     </section>
