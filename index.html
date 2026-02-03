@@ -150,7 +150,7 @@
       backdrop-filter: none;
     }
     /* remove neon sheen and add subtle grit */
-    .btn-neon::before { content: ""; position: absolute; inset: 0; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><rect width="8" height="8" fill="%23000000" opacity="0"/><circle cx="1" cy="1" r="0.6" fill="%23ffffff" opacity="0.02"/></svg>'); mix-blend-mode: overlay; pointer-events:none; opacity:0.7; }
+    .btn-neon::before { content: ""; position: absolute; inset: 0; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><rect width="8" height="8[...]
     .btn-neon:hover {
       transform: translateY(-4px) scale(1.02) rotate(-0.6deg);
       box-shadow: 0 12px 30px rgba(0,0,0,0.75), inset 0 2px 0 rgba(255,255,255,0.02);
@@ -165,17 +165,17 @@
     /* Sections */
     section { padding: 100px 0; position: relative; }
     .section-title { text-align:center; font-size: 3.2rem; margin-bottom: 40px; position: relative; display:inline-block; left:50%; transform:translateX(-50%); color:#e7e2d9; }
-    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity:0.9; }
+    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), [...]
 
     /* Features Grid etc. (kept mostly same, with slightly darker cards) */
     .features-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:40px; margin-top:40px; }
-    .feature-card { background: rgba(0,0,0,0.45); border-radius:14px; padding: 30px; text-align:center; border: 1px solid rgba(255,255,255,0.04); transition: all 0.35s ease; position: relative; overflow:hidden; }
+    .feature-card { background: rgba(0,0,0,0.45); border-radius:14px; padding: 30px; text-align:center; border: 1px solid rgba(255,255,255,0.04); transition: all 0.35s ease; position: relative; overfl[...]
     .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-color: rgba(212,176,74,0.12); }
     .feature-icon { font-size: 3rem; margin-bottom: 18px; display:inline-block; }
 
     /* Roadmap Timeline (unchanged look but toned down) */
     .timeline { position: relative; max-width:800px; margin: 60px auto 0; }
-    .timeline::before { content:''; position:absolute; left:50%; transform:translateX(-50%); width:4px; height:100%; background: linear-gradient(180deg, rgba(212,176,74,0.9), rgba(127,181,184,0.9)); opacity:0.45; }
+    .timeline::before { content:''; position:absolute; left:50%; transform:translateX(-50%); width:4px; height:100%; background: linear-gradient(180deg, rgba(212,176,74,0.9), rgba(127,181,184,0.9)); o[...]
     .timeline-item { margin-bottom: 60px; position: relative; width:45%; }
     .timeline-item:nth-child(odd) { left: 0; }
     .timeline-item:nth-child(even) { left: 55%; }
@@ -187,7 +187,7 @@
 
     /* Footer */
     footer { background: rgba(0,0,0,0.8); padding: 80px 0 40px; margin-top: 80px; position: relative; overflow: hidden; }
-    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacity:0.08; filter: blur(60px); }
+    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacit[...]
 
     /* Footer social icons are hidden because the icons are centered on page now */
     .footer .social-icons { display: none; }
@@ -264,11 +264,11 @@
   <!-- Centered social icons (X & Telegram) -->
   <div class="social-center" aria-hidden="false">
     <!-- X (Twitter) -->
-    <a class="social-icon" href="https://x.com/gape2287?s=21" target="_blank" rel="noopener noreferrer" title="X — GAPE2287">
-      <i class="fab fa-x-twitter"></i>
+    <a class="social-icon" href="https://x.com/gape2287?s=21" target="_blank" rel="noopener noreferrer" title="X — GAPE2287" aria-label="X — GAPE2287">
+      <i class="fab fa-x"></i>
     </a>
     <!-- Telegram -->
-    <a class="social-icon" href="https://t.me/GAPE2287" target="_blank" rel="noopener noreferrer" title="Telegram — GAPE2287">
+    <a class="social-icon" href="https://t.me/GAPE2287" target="_blank" rel="noopener noreferrer" title="Telegram — GAPE2287" aria-label="Telegram — GAPE2287">
       <i class="fab fa-telegram-plane"></i>
     </a>
   </div>
@@ -300,8 +300,15 @@
       <h1 class="title-glitch">$GAPE2287</h1>
       <h2 class="tagline">FROM JUNGLE TO JUPITER 🚀</h2>
       <p>
-        The first intergalactic meme coin powered by banana energy, quantum blockchain technology, and pure ape ambition.
-        We're not just going to the moon - we're building a galactic empire.
+        $GAPE2287 was born in the jungle — strong, wild, destined for greatness.<br><br>
+        Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.<br><br>
+        In the war, he was mummified and mutated, preserved for centuries.<br><br>
+        He awakened in modern civilization — stronger, smarter, evolved.<br><br>
+        Now he leads his people through technology, blockchain, and the metaverse…<br><br>
+        toward the cryptoverse…<br><br>
+        toward the moon….<br><br>
+        You’re not just a holder.<br>
+        You’re part of the uprising.
       </p>
 
       <!-- Action Buttons (gritty look) -->
@@ -387,7 +394,7 @@
 
       <!-- footer icons intentionally hidden because centered icons are used -->
       <div class="social-icons" aria-hidden="true">
-        <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a>
         <a href="https://t.me/GAPE2287" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
       </div>
 
