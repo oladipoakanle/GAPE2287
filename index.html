@@ -65,7 +65,6 @@
       top: -300px; left: 50%; transform: translateX(-50%); opacity: 0.14; filter: blur(60px);
     }
 
-    /* LOGO (now stationary + gritty treatment) */
     .logo-3d-container { width: 300px; height: 300px; margin: 0 auto 40px; position: relative; }
     .logo-3d { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
     .logo-face {
@@ -94,10 +93,8 @@
     .ring-3 { width: 480px; height: 480px; animation-direction: reverse; }
     @keyframes orbitSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-    /* Gritty Title */
-    h1 { font-family: "Impact", "Oswald", Arial, sans-serif; font-size: 4.2rem; color: #ddd; letter-spacing: 1px; text-transform: uppercase; margin: 18px 0; position: relative; display: inline-block; }
-    h1::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(transparent 40%, rgba(0,0,0,0.06) 41%, transparent 42%), repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.03) 1px, transparent 2px); pointer-events: none; }
-
+    h1 { font-family: "Impact", "Oswald", Arial, sans-serif; font-size: 4.2rem; color: #ddd; letter-spacing: 1px; text-transform: uppercase; margin: 18px 0; position: relative; display: inline-block; background: none; }
+    h1::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(transparent 40%, rgba(0,0,0,0.06) 41%, transparent 42%), repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 6px); opacity: 0.22; z-index: 1; pointer-events: none; border-radius: 4px; }
     .tagline { font-size: 2.2rem; color: var(--secondary); margin: 14px 0 30px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); letter-spacing: 1px; }
 
     header p { font-size: 1.15rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6; opacity: 0.95; color: #dcd8d0; }
@@ -119,68 +116,57 @@
       opacity:0.87;
     }
 
-    /* — GRITTY BUTTONS (buttons under bio) — */
     .btn-container { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin: 30px 0 0; }
-    .btn-neon { padding: 14px 32px; font-size: 1.05rem; font-weight: 700; text-decoration: none; border-radius: 8px; position: relative; overflow: hidden; display: inline-flex; align-items:center; gap:10px; transition: transform 0.2s; }
+    .btn-neon { padding: 14px 32px; font-size: 1.05rem; font-weight: 700; text-decoration: none; border-radius: 8px; position: relative; overflow: hidden; display: inline-flex; align-items:center; gap:10px; transition: all 0.22s cubic-bezier(.23,1.12,.75,1.01); box-shadow: 0 4px 18px rgba(140,59,47,0.09); border: none; outline: none; cursor:pointer; }
     .btn-neon:hover { transform: translateY(-4px) scale(1.02) rotate(-0.6deg); box-shadow: 0 12px 30px rgba(0,0,0,0.75), inset 0 2px 0 rgba(255,255,255,0.02); filter: brightness(1.06) saturate(0.95); }
     .btn-primary { background: linear-gradient(180deg, #53372f 0%, #2b1b17 100%); color: #f1e7d0; border: 1px solid rgba(255,255,255,0.03); }
     .btn-secondary { background: linear-gradient(180deg, #254c4f 0%, #12292a 100%); color: #dff2f2; border: 1px solid rgba(255,255,255,0.03); }
     .btn-tertiary { background: linear-gradient(180deg, #4b2b4b 0%, #211021 100%); color: #f3dbff; border: 1px solid rgba(255,255,255,0.03); }
 
-    /* Sections */
     section { padding: 100px 0; position: relative; }
     .section-title { text-align:center; font-size: 3.2rem; margin-bottom: 40px; position: relative; display:inline-block; left:50%; transform:translateX(-50%); color:#e7e2d9; }
-    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), transparent); border-radius:4px; }
+    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent); border-radius:3px; opacity:0.66; }
 
-    /* New Roadmap / Organogram Styles (with status chips + progress) */
     .roadmap-wrap { max-width: 1100px; margin: 20px auto 0; padding: 20px; }
     .roadmap { display: flex; gap: 20px; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
-    .roadmap-step { flex: 1 1 220px; background: rgba(0,0,0,0.45); border-radius: 12px; padding: 22px; text-align: left; border: 1px solid rgba(255,255,255,0.06); position: relative; min-width: 220px; margin-bottom: 16px; }
-    .roadmap-step .step-badge { width:46px; height:46px; border-radius:50%; background: linear-gradient(180deg, var(--primary), #bda65a); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:900; color:#322c10; margin-bottom:12px; position:absolute; left:12px; top:12px;}
+    .roadmap-step { flex: 1 1 220px; background: rgba(0,0,0,0.45); border-radius: 12px; padding: 22px; text-align: left; border: 1px solid rgba(255,255,255,0.06); position: relative; min-width: 220px; min-height:200px;}
+    .roadmap-step .step-badge { width:46px; height:46px; border-radius:50%; background: linear-gradient(180deg, var(--primary), #bda65a); display:flex; align-items:center; justify-content:center; font-size: 1.28rem; font-weight:900; box-shadow: 0 2px 12px rgba(212,176,74,0.18);}
     .roadmap-step h4 { margin-left: 80px; margin-top: 4px; font-size: 1.15rem; color: #efe9db; }
     .roadmap-step p { margin-top: 10px; color: #d7d2c9; line-height: 1.45; font-size: 0.98rem; }
-    .roadmap-connector { height: 4px; background: linear-gradient(90deg, rgba(127,181,184,0.95), rgba(212,176,74,0.95)); flex: 0 0 60px; align-self: center; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.15); margin: 0 8px;}
+    .roadmap-connector { height: 4px; background: linear-gradient(90deg, rgba(127,181,184,0.95), rgba(212,176,74,0.95)); flex: 0 0 60px; align-self: center; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.16);}
     .organogram { display: flex; flex-direction: column; gap: 28px; align-items: center; }
 
-    /* Status chips + meta */
     .roadmap-step .meta { position: absolute; top: 12px; right: 16px; display:flex; gap:8px; align-items:center; }
-    .status-chip { padding:6px 10px; border-radius:999px; font-weight:800; font-size:0.78rem; color:#081018; background:linear-gradient(180deg,#cfe2a8,#9fb04a); border:1px solid rgba(0,0,0,0.15); box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-    .status-complete { background: linear-gradient(180deg,#b9f6c9,#7be495); }
-    .status-progress { background: linear-gradient(180deg,#fff3b0,#ffd24a); }
-    .status-planned { background: linear-gradient(180deg,#e6e6e6,#cfcfcf); color:#0b0b10; }
-    .phase-date { font-size:0.82rem; color:#d7d2c9; opacity:0.95; }
+    .status-chip { padding:6px 10px; border-radius:999px; font-weight:800; font-size:0.78rem; color:#081018; background:linear-gradient(180deg,#cfe2a8,#9fb04a); border:1px solid rgba(0,0,0,0.15); box-shadow:0 2px 6px rgba(212,176,74,0.10);}
+    .status-complete { background: linear-gradient(180deg,#b9f6c9,#7be495);}
+    .status-progress { background: linear-gradient(180deg,#fff3b0,#ffd24a);}
+    .status-planned { background: linear-gradient(180deg,#e6e6e6,#cfcfcf); color:#0b0b10;}
+    .phase-date { font-size:0.82rem; color:#d7d2c9; opacity:0.95;}
 
-    /* Progress bar */
     .progress-wrap { margin-top:14px; background: rgba(255,255,255,0.04); border-radius:8px; height:10px; overflow:hidden; }
     .progress-bar { height:100%; width:0%; background: linear-gradient(90deg,var(--primary),var(--secondary)); box-shadow: 0 6px 12px rgba(0,0,0,0.35); border-radius:8px; transition: width 900ms ease;}
 
-    /* Mobile: stack steps vertically and hide connectors */
     @media (max-width: 768px) {
       .roadmap { flex-direction: column; align-items: center; }
       .roadmap-connector { display: none; }
       .roadmap-step { width: 90%; min-width: auto; }
     }
 
-    /* Features Grid etc. */
     .features-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:40px; margin-top:40px; }
     .feature-card { background: rgba(0,0,0,0.45); border-radius:14px; padding: 30px; text-align:center; border: 1px solid rgba(255,255,255,0.04); transition: all 0.35s ease; position: relative; }
     .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-color: rgba(212,176,74,0.12); }
     .feature-icon { font-size: 3rem; margin-bottom: 18px; display:inline-block; }
 
-    /* Footer */
     footer { background: rgba(0,0,0,0.8); padding: 80px 0 40px; margin-top: 80px; position: relative; overflow: hidden; }
-    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacity:0.14; filter:blur(50px); pointer-events:none; z-index:-1;}
-
+    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacity:0.14; filter: blur(32px);}
     .footer .social-icons { display: none; }
-    .social-center { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 60; display: flex; gap: 18px; align-items: center; justify-content: center; background: rgba(10,10,20,0.01); }
-    .social-center .social-icon { width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.07)); color: var(--primary); font-size: 2.4rem; transition:0.24s; border:1px solid rgba(127,181,184,0.08);}
-    .social-center .social-icon:hover { transform: translateY(-6px) rotate(-8deg); box-shadow: 0 16px 40px rgba(0,0,0,0.7); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.15)); }
-
+    .social-center { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 60; display: flex; gap: 18px; align-items: center; justify-content: center; background: rgba(10,10,24,0.06); padding:0 22px; border-radius: 40px; pointer-events: auto; }
+    .social-center .social-icon { width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(120,119,198,0.07)); color:#d4b04a; font-size:2.1rem; box-shadow: 0 3px 14px rgba(0,0,0,0.12); margin: 0 2px; transition: all 0.14s; }
+    .social-center .social-icon:hover { transform: translateY(-6px) rotate(-8deg); box-shadow: 0 16px 40px rgba(0,0,0,0.7); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(212,176,74,0.20)); color:#ffe579;}
     .parallax-layer { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
-    @media (max-width: 992px) { h1 { font-size: 3.2rem; } .tagline { font-size: 1.6rem; } .btn-container { flex-direction: column; align-items:center; gap:14px; } .btn-neon { width: 90%; max-width: 420px; } }
-    @media (max-width: 768px) { h1 { font-size: 2.4rem; } .section-title { font-size: 2.2rem; } .timeline::before { left: 30px; } .timeline-item { width:100%; left:0 !important; padding-left: 60px; } }
-
+    @media (max-width: 992px) { h1 { font-size: 3.2rem; } .tagline { font-size: 1.6rem; } .btn-container { flex-direction: column; align-items:center; gap:14px; } .btn-neon { width: 90%; max-width: 420px;}
+    @media (max-width: 768px) { h1 { font-size: 2.4rem; } .section-title { font-size: 2.2rem; } }
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--darker); }
     ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 5px; }
@@ -219,7 +205,8 @@
         <div class="orbit-ring ring-3"></div>
         <div class="logo-3d">
           <div class="logo-face logo-face-front">
-            <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
+            <!-- IMAGE FIX: switched to valid placeholder, see note below -->
+            <img src="https://placehold.co/260x260?text=GAPE+Logo" alt="GAPE Logo" class="logo-static" />
           </div>
           <div class="logo-face logo-face-back" style="display:none;">
             <span style="font-size: 3rem; color: white;">🚀</span>
@@ -239,9 +226,9 @@
         You’re not just a holder.<br>
         You’re part of the uprising.
       </p>
-      <!-- PICTORIAL BIO INSERTION -->
+      <!-- PICTORIAL BIO INSERTION, ALSO IMAGE FIXED SAME STRATEGY -->
       <div class="pictorial-bio">
-        <img src="Gemini_Generated_Image_6yljy66yljy66ylj.png" alt="Pictorial bio of GAPE2287" />
+        <img src="https://placehold.co/340x200?text=GAPE+Pictorial+Bio" alt="Pictorial bio of GAPE2287" />
         <div>The legend of $GAPE — illustrated</div>
       </div>
       <!-- Action Buttons -->
@@ -287,7 +274,6 @@
     <section id="roadmap">
       <h2 class="section-title">INTERGALACTIC ROADMAP</h2>
       <div class="roadmap-wrap">
-        <!-- Top-level organogram leader -->
         <div class="organogram">
           <div class="branch" style="width:100%; justify-content:center;">
             <div class="roadmap-step">
@@ -439,12 +425,10 @@
       // Animate progress bars after load
       document.querySelectorAll('.progress-bar').forEach(el => {
         const width = el.style.width || '0%';
-        // small timeout to trigger transition
         setTimeout(() => el.style.width = width, 80);
       });
     });
 
-    // Typewriter effect for tagline (keeps same behavior)
     (function() {
       const tagline = document.querySelector('.tagline');
       if (!tagline) return;
