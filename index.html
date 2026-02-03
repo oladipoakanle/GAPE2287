@@ -95,17 +95,33 @@
     @keyframes orbitSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
     /* Gritty Title */
-    h1 { font-family: "Impact", "Oswald", Arial, sans-serif; font-size: 4.2rem; color: #ddd; letter-spacing: 1px; text-transform: uppercase; margin: 18px 0; position: relative; display: inline-block; line-height: 1; text-shadow: 0 1px 0 rgba(0,0,0,0.85), 1px 2px 0 rgba(0,0,0,0.6), -1px 1px 0 rgba(255,255,255,0.02); }
-    h1::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(transparent 40%, rgba(0,0,0,0.06) 41%, transparent 42%), repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 6px); mix-blend-mode: overlay; pointer-events: none; opacity: 0.8; }
+    h1 { font-family: "Impact", "Oswald", Arial, sans-serif; font-size: 4.2rem; color: #ddd; letter-spacing: 1px; text-transform: uppercase; margin: 18px 0; position: relative; display: inline-block; }
+    h1::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(transparent 40%, rgba(0,0,0,0.06) 41%, transparent 42%), repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.03) 1px, transparent 2px); pointer-events: none; }
 
     .tagline { font-size: 2.2rem; color: var(--secondary); margin: 14px 0 30px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); letter-spacing: 1px; }
 
     header p { font-size: 1.15rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6; opacity: 0.95; color: #dcd8d0; }
+    .pictorial-bio {
+      text-align:center;
+      margin:32px 0;
+    }
+    .pictorial-bio img {
+      max-width:340px;
+      width:100%;
+      border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.50);
+      border:2px solid #d4b04a;
+    }
+    .pictorial-bio div {
+      color:#e7e1cf;
+      font-size:1.08rem;
+      margin-top:12px;
+      opacity:0.87;
+    }
 
     /* — GRITTY BUTTONS (buttons under bio) — */
     .btn-container { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin: 30px 0 0; }
-    .btn-neon { padding: 14px 32px; font-size: 1.05rem; font-weight: 700; text-decoration: none; border-radius: 8px; position: relative; overflow: hidden; display: inline-flex; align-items:center; gap:10px; min-width: 220px; justify-content: center; background: linear-gradient(180deg, #2b2b2b 0%, #161616 100%); color: #e9e6de; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 6px 18px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.03); transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease; text-shadow: 0 1px 0 rgba(0,0,0,0.8); letter-spacing: 0.6px; backdrop-filter: none; }
-    .btn-neon::before { content: ""; position: absolute; inset: 0; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><rect width="8" height="8[...]'); }
+    .btn-neon { padding: 14px 32px; font-size: 1.05rem; font-weight: 700; text-decoration: none; border-radius: 8px; position: relative; overflow: hidden; display: inline-flex; align-items:center; gap:10px; transition: transform 0.2s; }
     .btn-neon:hover { transform: translateY(-4px) scale(1.02) rotate(-0.6deg); box-shadow: 0 12px 30px rgba(0,0,0,0.75), inset 0 2px 0 rgba(255,255,255,0.02); filter: brightness(1.06) saturate(0.95); }
     .btn-primary { background: linear-gradient(180deg, #53372f 0%, #2b1b17 100%); color: #f1e7d0; border: 1px solid rgba(255,255,255,0.03); }
     .btn-secondary { background: linear-gradient(180deg, #254c4f 0%, #12292a 100%); color: #dff2f2; border: 1px solid rgba(255,255,255,0.03); }
@@ -114,21 +130,21 @@
     /* Sections */
     section { padding: 100px 0; position: relative; }
     .section-title { text-align:center; font-size: 3.2rem; margin-bottom: 40px; position: relative; display:inline-block; left:50%; transform:translateX(-50%); color:#e7e2d9; }
-    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), transparent); border-radius:2px; }
+    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), transparent); border-radius:4px; }
 
     /* New Roadmap / Organogram Styles (with status chips + progress) */
     .roadmap-wrap { max-width: 1100px; margin: 20px auto 0; padding: 20px; }
     .roadmap { display: flex; gap: 20px; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
-    .roadmap-step { flex: 1 1 220px; background: rgba(0,0,0,0.45); border-radius: 12px; padding: 22px; text-align: left; border: 1px solid rgba(255,255,255,0.06); position: relative; min-width: 220px; box-shadow: 0 8px 28px rgba(0,0,0,0.45); }
-    .roadmap-step .step-badge { width:46px; height:46px; border-radius:50%; background: linear-gradient(180deg, var(--primary), #bda65a); display:flex; align-items:center; justify-content:center; font-weight:700; color:#0b0b10; box-shadow: 0 6px 16px rgba(0,0,0,0.5); position: absolute; top: -23px; left: 24px; border: 3px solid rgba(0,0,0,0.35); }
+    .roadmap-step { flex: 1 1 220px; background: rgba(0,0,0,0.45); border-radius: 12px; padding: 22px; text-align: left; border: 1px solid rgba(255,255,255,0.06); position: relative; min-width: 220px; margin-bottom: 16px; }
+    .roadmap-step .step-badge { width:46px; height:46px; border-radius:50%; background: linear-gradient(180deg, var(--primary), #bda65a); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:900; color:#322c10; margin-bottom:12px; position:absolute; left:12px; top:12px;}
     .roadmap-step h4 { margin-left: 80px; margin-top: 4px; font-size: 1.15rem; color: #efe9db; }
     .roadmap-step p { margin-top: 10px; color: #d7d2c9; line-height: 1.45; font-size: 0.98rem; }
-    .roadmap-connector { height: 4px; background: linear-gradient(90deg, rgba(127,181,184,0.95), rgba(212,176,74,0.95)); flex: 0 0 60px; align-self: center; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.45); }
+    .roadmap-connector { height: 4px; background: linear-gradient(90deg, rgba(127,181,184,0.95), rgba(212,176,74,0.95)); flex: 0 0 60px; align-self: center; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.15); margin: 0 8px;}
     .organogram { display: flex; flex-direction: column; gap: 28px; align-items: center; }
 
     /* Status chips + meta */
     .roadmap-step .meta { position: absolute; top: 12px; right: 16px; display:flex; gap:8px; align-items:center; }
-    .status-chip { padding:6px 10px; border-radius:999px; font-weight:800; font-size:0.78rem; color:#081018; background:linear-gradient(180deg,#cfe2a8,#9fb04a); border:1px solid rgba(0,0,0,0.15); box-shadow:0 6px 14px rgba(0,0,0,0.35); }
+    .status-chip { padding:6px 10px; border-radius:999px; font-weight:800; font-size:0.78rem; color:#081018; background:linear-gradient(180deg,#cfe2a8,#9fb04a); border:1px solid rgba(0,0,0,0.15); box-shadow:0 2px 8px rgba(0,0,0,0.08);}
     .status-complete { background: linear-gradient(180deg,#b9f6c9,#7be495); }
     .status-progress { background: linear-gradient(180deg,#fff3b0,#ffd24a); }
     .status-planned { background: linear-gradient(180deg,#e6e6e6,#cfcfcf); color:#0b0b10; }
@@ -136,7 +152,7 @@
 
     /* Progress bar */
     .progress-wrap { margin-top:14px; background: rgba(255,255,255,0.04); border-radius:8px; height:10px; overflow:hidden; }
-    .progress-bar { height:100%; width:0%; background: linear-gradient(90deg,var(--primary),var(--secondary)); box-shadow: 0 6px 12px rgba(0,0,0,0.35); border-radius:8px; transition: width 900ms ease; }
+    .progress-bar { height:100%; width:0%; background: linear-gradient(90deg,var(--primary),var(--secondary)); box-shadow: 0 6px 12px rgba(0,0,0,0.35); border-radius:8px; transition: width 900ms ease;}
 
     /* Mobile: stack steps vertically and hide connectors */
     @media (max-width: 768px) {
@@ -153,17 +169,17 @@
 
     /* Footer */
     footer { background: rgba(0,0,0,0.8); padding: 80px 0 40px; margin-top: 80px; position: relative; overflow: hidden; }
-    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacity:0.18; filter: blur(40px); }
+    .footer-glow { position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; background: radial-gradient(circle, rgba(140,59,47,0.12) 0%, transparent 70%); opacity:0.14; filter:blur(50px); pointer-events:none; z-index:-1;}
 
     .footer .social-icons { display: none; }
-    .social-center { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 60; display: flex; gap: 18px; align-items: center; justify-content: center; background: rgba(10,10,12,0.45); padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.035); backdrop-filter: blur(4px); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-    .social-center .social-icon { width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12)); color: #eae6df; font-size:1.2rem; text-decoration:none; transition: all 0.22s ease; border: 1px solid rgba(255,255,255,0.03); }
-    .social-center .social-icon:hover { transform: translateY(-6px) rotate(-8deg); box-shadow: 0 16px 40px rgba(0,0,0,0.7); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02)); }
+    .social-center { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 60; display: flex; gap: 18px; align-items: center; justify-content: center; background: rgba(10,10,20,0.01); }
+    .social-center .social-icon { width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.07)); color: var(--primary); font-size: 2.4rem; transition:0.24s; border:1px solid rgba(127,181,184,0.08);}
+    .social-center .social-icon:hover { transform: translateY(-6px) rotate(-8deg); box-shadow: 0 16px 40px rgba(0,0,0,0.7); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.15)); }
 
     .parallax-layer { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
-    @media (max-width: 992px) { h1 { font-size: 3.2rem; } .tagline { font-size: 1.6rem; } .btn-container { flex-direction: column; align-items:center; gap:14px; } .btn-neon { width: 90%; max-width: 420px; } .social-center { transform: translate(-50%, -45%); gap: 12px; } }
-    @media (max-width: 768px) { h1 { font-size: 2.4rem; } .section-title { font-size: 2.2rem; } .timeline::before { left: 30px; } .timeline-item { width:100%; left:0 !important; padding-left: 60px; } .social-center { top: auto; bottom: 28px; transform: translateX(-50%); } }
+    @media (max-width: 992px) { h1 { font-size: 3.2rem; } .tagline { font-size: 1.6rem; } .btn-container { flex-direction: column; align-items:center; gap:14px; } .btn-neon { width: 90%; max-width: 420px; } }
+    @media (max-width: 768px) { h1 { font-size: 2.4rem; } .section-title { font-size: 2.2rem; } .timeline::before { left: 30px; } .timeline-item { width:100%; left:0 !important; padding-left: 60px; } }
 
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--darker); }
@@ -173,17 +189,14 @@
 <body>
   <!-- Animated Space Background -->
   <div class="space-bg"></div>
-
   <!-- Particle System Container -->
   <div id="particles-js"></div>
-
   <!-- Floating Bananas -->
   <div class="banana-float" style="top:20%; left:5%; animation-delay: 0s;">🍌</div>
   <div class="banana-float" style="top:60%; left:10%; animation-delay: -2s;">🍌</div>
   <div class="banana-float" style="top:30%; left:90%; animation-delay: -5s;">🍌</div>
   <div class="banana-float" style="top:80%; left:80%; animation-delay: -8s;">🍌</div>
   <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">🍌</div>
-
   <!-- Centered social icons (X & Telegram) -->
   <div class="social-center" aria-hidden="false">
     <!-- X (Twitter) -->
@@ -195,31 +208,24 @@
       <i class="fab fa-telegram-plane"></i>
     </a>
   </div>
-
   <!-- Main Content -->
   <div class="container">
     <header>
       <div class="header-glow"></div>
-
-      <!-- Stationary Logo (use the provided logo file, e.g. place it as /IMG_5116.jpeg) -->
+      <!-- Stationary Logo -->
       <div class="logo-3d-container" aria-hidden="true">
         <div class="orbit-ring ring-1"></div>
         <div class="orbit-ring ring-2"></div>
         <div class="orbit-ring ring-3"></div>
-
         <div class="logo-3d">
           <div class="logo-face logo-face-front">
-            <!-- Using the exact filename you uploaded -->
             <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
           </div>
-
           <div class="logo-face logo-face-back" style="display:none;">
-            <!-- kept invisible/backface in case needed -->
             <span style="font-size: 3rem; color: white;">🚀</span>
           </div>
         </div>
       </div>
-
       <h1 class="title-glitch">$GAPE2287</h1>
       <h2 class="tagline">FROM JUNGLE TO JUPITER 🚀</h2>
       <p>
@@ -233,8 +239,12 @@
         You’re not just a holder.<br>
         You’re part of the uprising.
       </p>
-
-      <!-- Action Buttons (gritty look) -->
+      <!-- PICTORIAL BIO INSERTION -->
+      <div class="pictorial-bio">
+        <img src="Gemini_Generated_Image_6yljy66yljy66ylj.png" alt="Pictorial bio of GAPE2287" />
+        <div>The legend of $GAPE — illustrated</div>
+      </div>
+      <!-- Action Buttons -->
       <div class="btn-container">
         <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
@@ -247,7 +257,6 @@
         </a>
       </div>
     </header>
-
     <!-- Features Section -->
     <section id="features">
       <h2 class="section-title">APES STRONG TOGETHER</h2>
@@ -274,7 +283,6 @@
         </div>
       </div>
     </section>
-
     <!-- Roadmap Section -->
     <section id="roadmap">
       <h2 class="section-title">INTERGALACTIC ROADMAP</h2>
@@ -328,26 +336,22 @@
       </div>
     </section>
   </div>
-
   <!-- Footer -->
   <footer>
     <div class="footer-glow"></div>
     <div class="container">
       <h2 class="section-title">JOIN THE BANANA REVOLUTION</h2>
-
       <!-- footer icons intentionally hidden because centered icons are used -->
       <div class="social-icons" aria-hidden="true">
         <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a>
         <a href="https://t.me/GAPE2287" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
       </div>
-
       <p style="text-align: center; margin-top: 40px; font-size: 1.2rem; opacity: 0.8;">
         🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE | DO YOUR OWN RESEARCH 🍌<br>
         <span style="font-size: 1rem; opacity: 0.6;">© 2026 $GAPE2287. All bananas reserved.</span>
       </p>
     </div>
   </footer>
-
   <!-- JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
