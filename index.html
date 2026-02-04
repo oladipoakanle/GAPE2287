@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>$GAPE2287 - Intergalactic Meme Coin</title>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     /* CSS Variables */
     :root {
@@ -82,7 +84,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 22px; /* Set icon size */
     }
     .social-floating .social-icon:hover {
       transform: scale(1.1) translateX(-5px);
@@ -124,7 +126,7 @@
     /* Typography */
     h1 { font-family: "Impact", sans-serif; font-size: 4.5rem; color: #fff; text-transform: uppercase; margin: 10px 0; }
     .title-glitch { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; min-height: 2.2rem; }
+    .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; min-height: 1.2em; }
     header p { max-width: 800px; margin: 0 auto 40px; line-height: 1.6; font-size: 1.1rem; }
 
     /* Contract Address Box */
@@ -140,8 +142,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .ca-container:hover { background: rgba(255,210,74,0.1); border-color: var(--primary); transform: translateY(-2px); }
-    .ca-container:active { transform: scale(0.98); }
+    .ca-container:hover { background: rgba(255,210,74,0.1); border-color: var(--primary); }
     .ca-text { font-family: monospace; color: var(--primary); }
 
     /* Buttons */
@@ -156,7 +157,7 @@
     .btn-secondary { background: #0a1a1a; }
     .btn-secondary:hover { transform: translateY(-5px); box-shadow: 0 0 25px var(--secondary); border-color: var(--secondary); }
 
-    /* Sections */
+    /* Roadmap */
     section { padding: 100px 0; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary); font-family: Impact, sans-serif; }
     .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -167,10 +168,12 @@
     .roadmap-step:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); }
     .step-badge { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
 
+    /* Features */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .feature-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
     .feature-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
+    /* Footer */
     footer { padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
     /* Mobile Adjustments */
@@ -179,7 +182,6 @@
       .social-floating {
         flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%);
         background: rgba(7, 7, 19, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--primary);
-        gap: 25px;
       }
       .logo-3d-container { width: 200px; height: 200px; }
     }
@@ -304,23 +306,23 @@
     /* Copy to Clipboard Function */
     function copyCA() {
       const caText = document.getElementById('ca-value').innerText;
-      navigator.clipboard.writeText(caText).then(() => {
-        alert("Contract Address Copied to Clipboard!");
-      });
+      navigator.clipboard.writeText(caText);
+      alert("Contract Address Copied to Clipboard!");
     }
 
-    /* Typing Animation */
-    const taglineElement = document.querySelector('.tagline');
-    const taglineText = "BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀";
+    /* Fixed Tagline Animation */
+    const tagline = document.querySelector('.tagline');
+    const text = "BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀";
     let i = 0;
     function type() {
-      if (i < taglineText.length) {
-        taglineElement.innerHTML += taglineText.charAt(i);
+      if (i < text.length) {
+        tagline.innerHTML += text.charAt(i);
         i++;
         setTimeout(type, 50);
       }
     }
-    window.onload = () => setTimeout(type, 500);
+    // Start typing after a short delay
+    window.onload = () => setTimeout(type, 1000);
   </script>
 </body>
 </html>
