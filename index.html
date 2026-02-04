@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>$GAPE2287 - Intergalactic Meme Coin</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     /* CSS Variables */
     :root {
@@ -62,7 +62,7 @@
     }
     .banana-float:hover { animation-play-state: paused; z-index: 30; }
 
-    /* Floating Socials - Relocated to Side */
+    /* Floating Socials */
     .social-floating {
       position: fixed;
       right: 25px;
@@ -82,6 +82,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
       text-decoration: none;
+      font-size: 1.2rem;
     }
     .social-floating .social-icon:hover {
       transform: scale(1.1) translateX(-5px);
@@ -123,7 +124,7 @@
     /* Typography */
     h1 { font-family: "Impact", sans-serif; font-size: 4.5rem; color: #fff; text-transform: uppercase; margin: 10px 0; }
     .title-glitch { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; }
+    .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; min-height: 2.2rem; }
     header p { max-width: 800px; margin: 0 auto 40px; line-height: 1.6; font-size: 1.1rem; }
 
     /* Contract Address Box */
@@ -139,7 +140,8 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .ca-container:hover { background: rgba(255,210,74,0.1); border-color: var(--primary); }
+    .ca-container:hover { background: rgba(255,210,74,0.1); border-color: var(--primary); transform: translateY(-2px); }
+    .ca-container:active { transform: scale(0.98); }
     .ca-text { font-family: monospace; color: var(--primary); }
 
     /* Buttons */
@@ -154,7 +156,7 @@
     .btn-secondary { background: #0a1a1a; }
     .btn-secondary:hover { transform: translateY(-5px); box-shadow: 0 0 25px var(--secondary); border-color: var(--secondary); }
 
-    /* Roadmap */
+    /* Sections */
     section { padding: 100px 0; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary); font-family: Impact, sans-serif; }
     .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -165,12 +167,10 @@
     .roadmap-step:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); }
     .step-badge { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
 
-    /* Features */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .feature-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
     .feature-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
-    /* Footer */
     footer { padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
     /* Mobile Adjustments */
@@ -179,6 +179,7 @@
       .social-floating {
         flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%);
         background: rgba(7, 7, 19, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--primary);
+        gap: 25px;
       }
       .logo-3d-container { width: 200px; height: 200px; }
     }
@@ -194,8 +195,12 @@
   <div class="banana-float" style="top:25%; left:85%; animation-delay: -5s;">🍌</div>
 
   <div class="social-floating">
-    <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://t.me/GAPE2287" class="social-icon" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+    <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+    <a href="https://t.me/GAPE2287" class="social-icon" target="_blank">
+      <i class="fa-brands fa-telegram"></i>
+    </a>
   </div>
 
   <div class="container">
@@ -208,9 +213,7 @@
       </div>
 
       <h1 class="title-glitch">$GAPE2287</h1>
-      <h2 class="tagline">BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀</h2>
-
-      <p>
+      <h2 class="tagline"></h2> <p>
         $GAPE2287 was born in the jungle — strong, wild, destined for greatness.
         Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.
         Mummified and mutated, he awakened in modern civilization — stronger, smarter, evolved.
@@ -226,7 +229,7 @@
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
         </a>
         <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
-          <i class="fas fa-monument"></i> VIEW NFT THAT INSPIRED IT ALL
+          <i class="fas fa-monument"></i> VIEW NFT
         </a>
         <a href="#roadmap" class="btn-neon">
           <i class="fas fa-map"></i> ROADMAP
@@ -301,23 +304,23 @@
     /* Copy to Clipboard Function */
     function copyCA() {
       const caText = document.getElementById('ca-value').innerText;
-      navigator.clipboard.writeText(caText);
-      alert("Contract Address Copied to Clipboard!");
+      navigator.clipboard.writeText(caText).then(() => {
+        alert("Contract Address Copied to Clipboard!");
+      });
     }
 
-    /* Simple Tagline Animation */
-    const tagline = document.querySelector('.tagline');
-    const text = tagline.innerText;
-    tagline.innerText = '';
+    /* Typing Animation */
+    const taglineElement = document.querySelector('.tagline');
+    const taglineText = "BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀";
     let i = 0;
     function type() {
-      if (i < text.length) {
-        tagline.innerText += text.charAt(i);
+      if (i < taglineText.length) {
+        taglineElement.innerHTML += taglineText.charAt(i);
         i++;
         setTimeout(type, 50);
       }
     }
-    setTimeout(type, 1000);
+    window.onload = () => setTimeout(type, 500);
   </script>
 </body>
 </html>
