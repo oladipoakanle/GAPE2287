@@ -84,7 +84,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
       text-decoration: none;
-      font-size: 22px; /* Set icon size */
+      font-size: 22px;
     }
     .social-floating .social-icon:hover {
       transform: scale(1.1) translateX(-5px);
@@ -157,7 +157,7 @@
     .btn-secondary { background: #0a1a1a; }
     .btn-secondary:hover { transform: translateY(-5px); box-shadow: 0 0 25px var(--secondary); border-color: var(--secondary); }
 
-    /* Roadmap */
+    /* Roadmap & Features */
     section { padding: 100px 0; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary); font-family: Impact, sans-serif; }
     .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -167,23 +167,18 @@
     }
     .roadmap-step:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); }
     .step-badge { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
-
-    /* Features */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .feature-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
     .feature-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
-    /* Footer */
     footer { padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-    /* Mobile Adjustments */
     @media (max-width: 768px) {
       h1 { font-size: 2.8rem; }
       .social-floating {
         flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%);
         background: rgba(7, 7, 19, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--primary);
       }
-      .logo-3d-container { width: 200px; height: 200px; }
     }
   </style>
 </head>
@@ -208,14 +203,15 @@
   <div class="container">
     <header>
       <div class="header-glow"></div>
-      
       <div class="logo-3d-container">
         <div class="orbit-ring ring-1"></div>
         <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
       </div>
 
       <h1 class="title-glitch">$GAPE2287</h1>
-      <h2 class="tagline"></h2> <p>
+      <h2 class="tagline"></h2>
+
+      <p>
         $GAPE2287 was born in the jungle — strong, wild, destined for greatness.
         Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.
         Mummified and mutated, he awakened in modern civilization — stronger, smarter, evolved.
@@ -230,9 +226,11 @@
         <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
         </a>
+        
         <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
-          <i class="fas fa-monument"></i> VIEW NFT
+          <i class="fas fa-monument"></i> VIEW NFT THAT INSPIRED IT ALL
         </a>
+        
         <a href="#roadmap" class="btn-neon">
           <i class="fas fa-map"></i> ROADMAP
         </a>
@@ -240,46 +238,46 @@
     </header>
 
     <section id="features">
-      <h2 class="section-title">APES STRONG TOGETHER</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="feature-icon">🦍</span>
-          <h3>APE-DRIVEN</h3>
-          <p>The jungle decides! Community-first governance for all $GAPE holders.</p>
+        <h2 class="section-title">APES STRONG TOGETHER</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🦍</span>
+            <h3>APE-DRIVEN</h3>
+            <p>The jungle decides! Community-first governance for all $GAPE holders.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🚀</span>
+            <h3>HYPERDRIVE</h3>
+            <p>Deflationary tokenomics designed to fuel our ascent to the cryptoverse.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🌌</span>
+            <h3>GALACTIC VISION</h3>
+            <p>Metaverse integration and mummified NFT artifacts in development.</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="feature-icon">🚀</span>
-          <h3>HYPERDRIVE</h3>
-          <p>Deflationary tokenomics designed to fuel our ascent to the cryptoverse.</p>
+      </section>
+  
+      <section id="roadmap">
+        <h2 class="section-title">THE ROAD TO THE MOON</h2>
+        <div class="roadmap-grid">
+          <div class="roadmap-step">
+            <span class="step-badge">PHASE 1</span>
+            <h3>Jungle Genesis</h3>
+            <p>Launch on Pump.fun, community building, and initial meme-warfare.</p>
+          </div>
+          <div class="roadmap-step">
+            <span class="step-badge">PHASE 2</span>
+            <h3>City Conquest</h3>
+            <p>Staking rewards, NFT drops, and strategic ape partnerships.</p>
+          </div>
+          <div class="roadmap-step">
+            <span class="step-badge">PHASE 3</span>
+            <h3>Moon Base</h3>
+            <p>CEX listings, metaverse land, and the final evolution of $GAPE.</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <span class="feature-icon">🌌</span>
-          <h3>GALACTIC VISION</h3>
-          <p>Metaverse integration and mummified NFT artifacts in development.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="roadmap">
-      <h2 class="section-title">THE ROAD TO THE MOON</h2>
-      <div class="roadmap-grid">
-        <div class="roadmap-step">
-          <span class="step-badge">PHASE 1</span>
-          <h3>Jungle Genesis</h3>
-          <p>Launch on Pump.fun, community building, and initial meme-warfare.</p>
-        </div>
-        <div class="roadmap-step">
-          <span class="step-badge">PHASE 2</span>
-          <h3>City Conquest</h3>
-          <p>Staking rewards, NFT drops, and strategic ape partnerships.</p>
-        </div>
-        <div class="roadmap-step">
-          <span class="step-badge">PHASE 3</span>
-          <h3>Moon Base</h3>
-          <p>CEX listings, metaverse land, and the final evolution of $GAPE.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
     <footer>
       <p>🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE 🍌</p>
@@ -289,7 +287,6 @@
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    /* Particles Config */
     particlesJS('particles-js', {
       particles: {
         number: { value: 80 },
@@ -303,14 +300,12 @@
       interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
     });
 
-    /* Copy to Clipboard Function */
     function copyCA() {
       const caText = document.getElementById('ca-value').innerText;
       navigator.clipboard.writeText(caText);
       alert("Contract Address Copied to Clipboard!");
     }
 
-    /* Fixed Tagline Animation */
     const tagline = document.querySelector('.tagline');
     const text = "BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀";
     let i = 0;
@@ -321,7 +316,6 @@
         setTimeout(type, 50);
       }
     }
-    // Start typing after a short delay
     window.onload = () => setTimeout(type, 1000);
   </script>
 </body>
