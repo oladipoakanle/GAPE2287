@@ -62,437 +62,262 @@
     }
     .banana-float:hover { animation-play-state: paused; z-index: 30; }
 
+    /* Floating Socials - Relocated to Side */
+    .social-floating {
+      position: fixed;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .social-floating .social-icon {
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      color: var(--primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .social-floating .social-icon:hover {
+      transform: scale(1.1) translateX(-5px);
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 20px var(--primary);
+    }
+
     /* Main Container */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
-    /* Animated Header */
-    header { padding: 80px 20px 60px; text-align: center; position: relative; overflow: visible; }
+    /* Header Styling */
+    header { padding: 80px 20px 60px; text-align: center; position: relative; }
     .header-glow {
       position: absolute; width: 680px; height: 680px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,210,74,0.16) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(95,224,208,0.08) 0%, transparent 50%);
-      top: -340px; left: 50%; transform: translateX(-50%); opacity: 0.18; filter: blur(70px) saturate(1.08);
+      background: radial-gradient(circle at 30% 30%, rgba(255,210,74,0.16) 0%, transparent 50%);
+      top: -340px; left: 50%; transform: translateX(-50%); opacity: 0.18; filter: blur(70px);
       animation: glowDrift 8s ease-in-out infinite alternate;
       pointer-events: none;
     }
-    @keyframes glowDrift { 0% { transform: translateX(-50%) translateY(0) rotate(0deg); } 100% { transform: translateX(-50%) translateY(18px) rotate(4deg); } }
+    @keyframes glowDrift { 0% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(20px); } }
 
-    /* LOGO (stationary + neon treatment) */
-    .logo-3d-container { width: 320px; height: 320px; margin: 0 auto 30px; position: relative; z-index: 12; }
-    .logo-3d { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
-    .logo-face {
-      position: absolute; width: 100%; height: 100%; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; backface-visibility: hidden;
-      overflow: hidden; background: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.28), rgba(0,0,0,0.12) 50%);
-      box-shadow: inset 0 10px 40px rgba(0,0,0,0.7), 0 12px 40px rgba(0,0,0,0.6);
-      border: 2px solid rgba(255,255,255,0.04);
-      transition: transform 600ms cubic-bezier(.2,.9,.3,1);
-    }
-
+    /* Logo Styling */
+    .logo-3d-container { width: 280px; height: 280px; margin: 0 auto 30px; position: relative; z-index: 12; }
     .logo-static {
-      max-width: 86%; max-height: 86%; object-fit: contain;
-      filter: contrast(1.06) saturate(1.06) drop-shadow(0 18px 26px rgba(0,0,0,0.7)) hue-rotate(2deg);
-      transform: rotate(-6deg) translateZ(20px);
-      transition: transform 450ms ease, filter 350ms ease;
+      width: 100%; height: 100%; object-fit: contain; border-radius: 50%;
+      filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
+      transition: transform 0.4s ease;
     }
-    .logo-3d-container:hover .logo-static { transform: rotate(-4deg) scale(1.03) translateZ(22px); filter: drop-shadow(0 36px 40px rgba(255,210,74,0.08)); }
+    .logo-3d-container:hover .logo-static { transform: scale(1.05) rotate(3deg); }
 
     .orbit-ring {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      border-radius: 50%; opacity: 0.8; mix-blend-mode: screen;
-      box-shadow: 0 0 40px rgba(255,210,74,0.06), inset 0 1px 8px rgba(255,255,255,0.02);
+      border-radius: 50%; opacity: 0.5; pointer-events: none;
     }
-    .ring-1 { width: 420px; height: 420px; border: 2px dashed rgba(95,224,208,0.14); animation: orbitSpin 28s linear infinite, ringPulse 6s ease-in-out infinite; }
-    .ring-2 { width: 480px; height: 480px; border: 2px solid rgba(255,210,74,0.09); animation: orbitSpin 22s linear reverse infinite, ringPulse 7s ease-in-out infinite; }
-    .ring-3 { width: 540px; height: 540px; border: 1px dotted rgba(255,107,107,0.06); animation: orbitSpin 34s linear infinite, ringPulse 9s ease-in-out infinite; }
-    @keyframes orbitSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-    @keyframes ringPulse { 0% { opacity: 0.45; filter: blur(0px) } 50% { opacity: 0.8; filter: blur(8px) } 100% { opacity: 0.45; filter: blur(0px) } }
+    .ring-1 { width: 340px; height: 340px; border: 1px dashed var(--secondary); animation: orbitSpin 20s linear infinite; }
+    @keyframes orbitSpin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-    /* Gritty / Neon Title */
-    h1 { font-family: "Impact", "Oswald", Arial, sans-serif; font-size: 4rem; color: #fff; letter-spacing: 1px; text-transform: uppercase; margin: 18px 0; position: relative; display: inline-block; text-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.5); }
-    .title-glitch {
-      background: linear-gradient(90deg, #ffffff 0%, rgba(255,210,74,0.9) 35%, rgba(95,224,208,0.7) 70%, #fff 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      position: relative;
+    /* Typography */
+    h1 { font-family: "Impact", sans-serif; font-size: 4.5rem; color: #fff; text-transform: uppercase; margin: 10px 0; }
+    .title-glitch { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; }
+    header p { max-width: 800px; margin: 0 auto 40px; line-height: 1.6; font-size: 1.1rem; }
+
+    /* Contract Address Box */
+    .ca-container {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,210,74,0.3);
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-    .title-glitch::after, .title-glitch::before {
-      content: attr(class);
-      position: absolute; left: 0; top: 0; width: 100%; height: 100%;
-      mix-blend-mode: screen; opacity: 0.06;
+    .ca-container:hover { background: rgba(255,210,74,0.1); border-color: var(--primary); }
+    .ca-text { font-family: monospace; color: var(--primary); }
+
+    /* Buttons */
+    .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .btn-neon {
+      padding: 15px 30px; text-decoration: none; border-radius: 12px; font-weight: 800;
+      display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1); color: #fff;
     }
-    .title-glitch::before { transform: translateX(2px); background: linear-gradient(90deg, rgba(255,107,107,0.6), rgba(95,224,208,0.6)); }
-    .title-glitch::after { transform: translateX(-2px); background: linear-gradient(90deg, rgba(255,210,74,0.5), rgba(95,224,208,0.2)); }
+    .btn-primary { background: #1a1a1a; box-shadow: 0 0 15px rgba(255,210,74,0.2); }
+    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 25px var(--primary); border-color: var(--primary); }
+    .btn-secondary { background: #0a1a1a; }
+    .btn-secondary:hover { transform: translateY(-5px); box-shadow: 0 0 25px var(--secondary); border-color: var(--secondary); }
 
-    .tagline { font-size: 2rem; color: var(--secondary); margin: 12px 0 26px; text-shadow: 0 2px 10px rgba(0,0,0,0.6); letter-spacing: 0.6px; font-weight: 600; }
-
-    header p { font-size: 1.05rem; max-width: 820px; margin: 0 auto 36px; line-height: 1.6; opacity: 0.95; color: #e7e1d8; }
-
-    /* — GRITTY / NEON BUTTONS */
-    .btn-container { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin: 26px 0 0; }
-    .btn-neon { padding: 12px 28px; font-size: 1rem; font-weight: 800; text-decoration: none; border-radius: 12px; position: relative; overflow: hidden; display: inline-flex; align-items:center; gap:12px; transition: transform 220ms ease, box-shadow 220ms ease; border: 1px solid rgba(255,255,255,0.03); }
-    .btn-neon i { font-size: 1.05rem; }
-    .btn-neon::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,210,74,0.06), rgba(95,224,208,0.04)); mix-blend-mode: screen; pointer-events: none; }
-    .btn-neon:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 28px rgba(255,210,74,0.06); }
-    .btn-primary { background: linear-gradient(180deg, #3a2722 0%, #1b1411 100%); color: #fff; border: 1px solid rgba(255,210,74,0.08); }
-    .btn-secondary { background: linear-gradient(180deg, #08393b 0%, #072828 100%); color: #cffbfa; border: 1px solid rgba(95,224,208,0.06); }
-    .btn-tertiary { background: linear-gradient(180deg, #3b1f3a 0%, #1a0f1a 100%); color: #f7e6ff; border: 1px solid rgba(255,107,107,0.04); }
-
-    /* Sections */
-    section { padding: 88px 0; position: relative; }
-    .section-title { text-align:center; font-size: 2.8rem; margin-bottom: 30px; position: relative; display:inline-block; left:50%; transform:translateX(-50%); color:#f1efe9; }
-    .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:160px; height:3px; background: linear-gradient(90deg, transparent, var(--primary), transparent); border-radius: 2px; }
-
-    /* Roadmap / Organogram */
-    .roadmap-wrap { max-width: 1100px; margin: 20px auto 0; padding: 20px; }
-    .roadmap { display: flex; gap: 20px; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
-    .roadmap-step { flex: 1 1 220px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.32)); border-radius: 12px; padding: 20px; text-align: left; border: 1px solid rgba(255,255,255,0.04); position: relative; min-width: 220px; transition: transform 220ms ease, box-shadow 220ms ease; }
-    .roadmap-step:hover { transform: translateY(-8px); box-shadow: 0 18px 44px rgba(0,0,0,0.6); }
-    .roadmap-step .step-badge { width:46px; height:46px; border-radius:50%; background: linear-gradient(180deg, var(--primary), #e0b84a); display:flex; align-items:center; justify-content:center; font-weight:900; color:#1a1a10; box-shadow: 0 8px 30px rgba(255,210,74,0.08); position: absolute; left: 18px; top: 18px; }
-    .roadmap-step h4 { margin-left: 80px; margin-top: 4px; font-size: 1.12rem; color: #fff; }
-    .roadmap-step p { margin-top: 10px; color: #d7d2c9; line-height: 1.45; font-size: 0.98rem; }
-
-    .roadmap-connector { height: 6px; background: linear-gradient(90deg, rgba(95,224,208,0.95), rgba(255,210,74,0.95)); flex: 0 0 60px; align-self: center; border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
-
-    .organogram { display: flex; flex-direction: column; gap: 28px; align-items: center; }
-
-    /* Status chips + meta */
-    .roadmap-step .meta { position: absolute; top: 12px; right: 14px; display:flex; gap:8px; align-items:center; }
-    .status-chip { padding:6px 10px; border-radius:999px; font-weight:800; font-size:0.78rem; color:#081018; background:linear-gradient(180deg,#cfe2a8,#9fb04a); border:1px solid rgba(0,0,0,0.15); }
-    .status-complete { background: linear-gradient(180deg,#b9f6c9,#7be495); color:#07210f; }
-    .status-progress { background: linear-gradient(180deg,#fff3b0,#ffd24a); color:#221a00; }
-    .status-planned { background: linear-gradient(180deg,#e6e6e6,#cfcfcf); color:#0b0b10; }
-    .phase-date { font-size:0.82rem; color:#d7d2c9; opacity:0.95; }
-
-    /* Progress bar */
-    .progress-wrap { margin-top:14px; background: rgba(255,255,255,0.03); border-radius:8px; height:10px; overflow:hidden; }
-    .progress-bar { height:100%; width:0%; background: linear-gradient(90deg,var(--primary),var(--secondary)); box-shadow: 0 6px 12px rgba(0,0,0,0.35); border-radius:8px; transition: width 900ms ease; }
-
-    /* Mobile: stack steps vertically and hide connectors */
-    @media (max-width: 768px) {
-      .roadmap { flex-direction: column; align-items: center; }
-      .roadmap-connector { display: none; }
-      .roadmap-step { width: 90%; min-width: auto; }
+    /* Roadmap */
+    section { padding: 100px 0; }
+    .section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary); font-family: Impact, sans-serif; }
+    .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .roadmap-step { 
+      background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; 
+      border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
     }
+    .roadmap-step:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); }
+    .step-badge { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
 
-    /* Features Grid etc. */
-    .features-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:30px; margin-top:36px; }
-    .feature-card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28)); border-radius:14px; padding: 26px; text-align:center; border: 1px solid rgba(255,255,255,0.04); transition: all 0.35s ease; position: relative; overflow: hidden; }
-    .feature-card::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 10% 10%, rgba(255,210,74,0.03), transparent 20%); pointer-events: none; }
-    .feature-card:hover { transform: translateY(-12px); box-shadow: 0 24px 56px rgba(0,0,0,0.6); border-color: rgba(255,210,74,0.08); }
-    .feature-icon { font-size: 2.6rem; margin-bottom: 14px; display:inline-block; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6)); }
+    /* Features */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+    .feature-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+    .feature-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
     /* Footer */
-    footer { background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.86)); padding: 80px 0 40px; margin-top: 80px; position: relative; overflow: hidden; }
-    .footer-glow { position:absolute; top:-150px; left:50%; transform:translateX(-50%); width:700px; height:700px; background: radial-gradient(circle, rgba(255,210,74,0.08) 0%, transparent 70%); opacity:0.9; filter: blur(80px); pointer-events:none; }
+    footer { padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-    .footer .social-icons { display: none; }
-    .social-center { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 60; display: flex; gap: 18px; align-items: center; justify-content: center; background: transparent; pointer-events: auto; }
-    .social-center .social-icon { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color: #fff; border: 1px solid rgba(255,255,255,0.04); transition: transform 320ms cubic-bezier(.2,.9,.3,1), box-shadow 320ms ease; text-decoration: none; }
-    .social-center .social-icon i { font-size: 1.2rem; color: var(--primary); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); }
-    .social-center .social-icon:hover { transform: translateY(-10px) rotate(-6deg); box-shadow: 0 30px 80px rgba(255,210,74,0.06), 0 8px 30px rgba(95,224,208,0.06); }
-
-    .parallax-layer { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
-
-    @media (max-width: 992px) { h1 { font-size: 3.2rem; } .tagline { font-size: 1.6rem; } .btn-container { flex-direction: column; align-items:center; gap:14px; } .btn-neon { width: 90%; max-width: 420px; } }
-    @media (max-width: 768px) { h1 { font-size: 2.4rem; } .section-title { font-size: 2.2rem; } .timeline::before { left: 30px; } .timeline-item { width:100%; left:0 !important; padding-left: 60px; } }
-
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: var(--darker); }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 5px; }
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      .social-floating {
+        flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%);
+        background: rgba(7, 7, 19, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--primary);
+      }
+      .logo-3d-container { width: 200px; height: 200px; }
+    }
   </style>
 </head>
 <body>
-  <!-- Animated Space Background -->
-  <div class="space-bg" aria-hidden="true"></div>
 
-  <!-- Particle System Container -->
-  <div id="particles-js" aria-hidden="true"></div>
+  <div class="space-bg"></div>
+  <div id="particles-js"></div>
 
-  <!-- Floating Bananas -->
-  <div class="banana-float" style="top:20%; left:5%; animation-delay: 0s;">🍌</div>
-  <div class="banana-float" style="top:60%; left:10%; animation-delay: -2s;">🍌</div>
-  <div class="banana-float" style="top:30%; left:90%; animation-delay: -5s;">🍌</div>
-  <div class="banana-float" style="top:80%; left:80%; animation-delay: -8s;">🍌</div>
-  <div class="banana-float" style="top:10%; left:70%; animation-delay: -12s;">🍌</div>
+  <div class="banana-float" style="top:15%; left:10%;">🍌</div>
+  <div class="banana-float" style="top:65%; left:5%; animation-delay: -2s;">🍌</div>
+  <div class="banana-float" style="top:25%; left:85%; animation-delay: -5s;">🍌</div>
 
-  <!-- Centered social icons (X & Telegram) -->
-  <div class="social-center" aria-hidden="false">
-    <!-- X (Twitter) -->
-    <a class="social-icon" href="https://x.com/gape2287?s=21" target="_blank" rel="noopener noreferrer" title="X — GAPE2287" aria-label="X — GAPE2287">
-      <i class="fab fa-x"></i>
-    </a>
-    <!-- Telegram -->
-    <a class="social-icon" href="https://t.me/GAPE2287" target="_blank" rel="noopener noreferrer" title="Telegram — GAPE2287" aria-label="Telegram — GAPE2287">
-      <i class="fab fa-telegram-plane"></i>
-    </a>
+  <div class="social-floating">
+    <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://t.me/GAPE2287" class="social-icon" target="_blank"><i class="fab fa-telegram-plane"></i></a>
   </div>
 
-  <!-- Main Content -->
   <div class="container">
     <header>
-      <div class="header-glow" aria-hidden="true"></div>
-
-      <!-- Stationary Logo (use the provided logo file, e.g. place it as /IMG_5116.jpeg) -->
-      <div class="logo-3d-container" aria-hidden="true">
-        <div class="orbit-ring ring-1" aria-hidden="true"></div>
-        <div class="orbit-ring ring-2" aria-hidden="true"></div>
-        <div class="orbit-ring ring-3" aria-hidden="true"></div>
-
-        <div class="logo-3d">
-          <div class="logo-face logo-face-front" aria-hidden="true">
-            <!-- Using the exact filename you uploaded -->
-            <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
-          </div>
-
-          <div class="logo-face logo-face-back" style="display:none;" aria-hidden="true">
-            <!-- kept invisible/backface in case needed -->
-            <span style="font-size: 3rem; color: white;">🚀</span>
-          </div>
-        </div>
+      <div class="header-glow"></div>
+      
+      <div class="logo-3d-container">
+        <div class="orbit-ring ring-1"></div>
+        <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
       </div>
 
       <h1 class="title-glitch">$GAPE2287</h1>
       <h2 class="tagline">BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀</h2>
+
       <p>
-        $GAPE2287 was born in the jungle — strong, wild, destined for greatness.<br><br>
-        Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.<br><br>
-        In the war, he was mummified and mutated, preserved for centuries.<br><br>
-        He awakened in modern civilization — stronger, smarter, evolved.<br><br>
-        Now he leads his people through technology, blockchain, and the metaverse…<br><br>
-        toward the cryptoverse…<br><br>
-        toward the moon….<br><br>
-        You’re not just a holder.<br>
-        You’re part of the uprising.
+        $GAPE2287 was born in the jungle — strong, wild, destined for greatness.
+        Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.
+        Mummified and mutated, he awakened in modern civilization — stronger, smarter, evolved.
       </p>
 
-      <!-- Action Buttons (neon look) -->
+      <div class="ca-container" onclick="copyCA()">
+        <span class="ca-text" id="ca-value">0xGAPE2287...PUMP_CONTRACT</span>
+        <i class="fas fa-copy" style="color: #fff;"></i>
+      </div>
+
       <div class="btn-container">
-        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank" rel="noopener noreferrer">
+        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
         </a>
-        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-crown"></i> VIEW NFTS
+        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
+          <i class="fas fa-monument"></i> VIEW NFT THAT INSPIRED IT ALL
         </a>
-        <a href="#roadmap" class="btn-neon btn-tertiary">
+        <a href="#roadmap" class="btn-neon">
           <i class="fas fa-map"></i> ROADMAP
         </a>
       </div>
     </header>
 
-    <!-- Features Section -->
     <section id="features">
       <h2 class="section-title">APES STRONG TOGETHER</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🦍</div>
+          <span class="feature-icon">🦍</span>
           <h3>APE-DRIVEN</h3>
-          <p>Community-first governance with voting rights for all $GAPE holders. The jungle decides!</p>
+          <p>The jungle decides! Community-first governance for all $GAPE holders.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3>HYPERDRIVE ENGINE</h3>
-          <p>Deflationary tokenomics with automatic liquidity generation and redistribution to holders.</p>
+          <span class="feature-icon">🚀</span>
+          <h3>HYPERDRIVE</h3>
+          <p>Deflationary tokenomics designed to fuel our ascent to the cryptoverse.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🍌</div>
-          <h3>BANANA FUEL</h3>
-          <p>Earn passive bananas through our staking protocol. More bananas, more power.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌌</div>
+          <span class="feature-icon">🌌</span>
           <h3>GALACTIC VISION</h3>
-          <p>Metaverse integration, NFT collections, and play-to-earn games in development.</p>
+          <p>Metaverse integration and mummified NFT artifacts in development.</p>
         </div>
       </div>
     </section>
 
-    <!-- Roadmap Section -->
     <section id="roadmap">
-      <h2 class="section-title">INTERGALACTIC ROADMAP</h2>
-      <div class="roadmap-wrap">
-        <!-- Top-level organogram leader -->
-        <div class="organogram">
-          <div class="branch" style="width:100%; justify-content:center;">
-            <div class="roadmap-step">
-              <div class="step-badge">★</div>
-              <h4>THE UPRISING</h4>
-              <p>Core vision: unite the community, secure the treasury, and build the $GAPE ecosystem.</p>
-            </div>
-          </div>
-          <!-- Branches -->
-          <div class="branch">
-            <div class="roadmap">
-              <div class="roadmap-step">
-                <div class="step-badge">1</div>
-                <div class="meta"><div class="status-chip status-complete">COMPLETED</div><div class="phase-date">Q1 2026</div></div>
-                <h4>PHASE 1: JUNGLE GENESIS</h4>
-                <p>Community building, token launch, website and socials. Establish governance basics.</p>
-                <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" style="width:100%;"></div></div>
-              </div>
-              <div class="roadmap-connector" aria-hidden="true"></div>
-              <div class="roadmap-step">
-                <div class="step-badge">2</div>
-                <div class="meta"><div class="status-chip status-progress">IN PROGRESS</div><div class="phase-date">Q2 2026</div></div>
-                <h4>PHASE 2: CITY CONQUEST</h4>
-                <p>NFT collection, staking platform, initial partnerships, ambassador program.</p>
-                <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" style="width:48%;"></div></div>
-              </div>
-              <div class="roadmap-connector" aria-hidden="true"></div>
-              <div class="roadmap-step">
-                <div class="step-badge">3</div>
-                <div class="meta"><div class="status-chip status-planned">PLANNED</div><div class="phase-date">Q3 2026</div></div>
-                <h4>PHASE 3: MOON BASE</h4>
-                <p>Major CEX listings, merch store, metaverse land acquisition, mobile game beta.</p>
-                <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" style="width:10%;"></div></div>
-              </div>
-              <div class="roadmap-connector" aria-hidden="true"></div>
-              <div class="roadmap-step">
-                <div class="step-badge">4</div>
-                <div class="meta"><div class="status-chip status-planned">PLANNED</div><div class="phase-date">Q4+ 2026</div></div>
-                <h4>PHASE 4: GALACTIC DOMINION</h4>
-                <p>Interoperable blockchain, ecosystem fund, charity initiatives, DAO and long-term sustainability.</p>
-                <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" style="width:0%;"></div></div>
-              </div>
-            </div>
-          </div>
+      <h2 class="section-title">THE ROAD TO THE MOON</h2>
+      <div class="roadmap-grid">
+        <div class="roadmap-step">
+          <span class="step-badge">PHASE 1</span>
+          <h3>Jungle Genesis</h3>
+          <p>Launch on Pump.fun, community building, and initial meme-warfare.</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="step-badge">PHASE 2</span>
+          <h3>City Conquest</h3>
+          <p>Staking rewards, NFT drops, and strategic ape partnerships.</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="step-badge">PHASE 3</span>
+          <h3>Moon Base</h3>
+          <p>CEX listings, metaverse land, and the final evolution of $GAPE.</p>
         </div>
       </div>
     </section>
+
+    <footer>
+      <p>🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE 🍌</p>
+      <p style="opacity: 0.5; margin-top: 10px;">© 2026 $GAPE2287. All bananas reserved.</p>
+    </footer>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-glow" aria-hidden="true"></div>
-    <div class="container">
-      <h2 class="section-title">JOIN THE BANANA REVOLUTION</h2>
-
-      <!-- footer icons intentionally hidden because centered icons are used -->
-      <div class="social-icons" aria-hidden="true">
-        <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a>
-        <a href="https://t.me/GAPE2287" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
-      </div>
-
-      <p style="text-align: center; margin-top: 40px; font-size: 1.1rem; opacity: 0.85;">
-        🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE | DO YOUR OWN RESEARCH 🍌<br>
-        <span style="font-size: 0.98rem; opacity: 0.6;">© 2026 $GAPE2287. All bananas reserved.</span>
-      </p>
-    </div>
-  </footer>
-
-  <!-- JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // Initialize Particle System with brighter, multi-color particles for more energy
+    /* Particles Config */
     particlesJS('particles-js', {
       particles: {
-        number: { value: 160, density: { enable: true, value_area: 900 } },
-        color: { value: ["#ffd24a", "#5fe0d0", "#ff6b6b", "#d4b04a"] },
+        number: { value: 80 },
+        color: { value: ["#ffd24a", "#5fe0d0"] },
         shape: { type: "circle" },
-        opacity: { value: 0.6, random: true },
-        size: { value: 3.5, random: true },
-        line_linked: {
-          enable: true,
-          distance: 160,
-          color: "#7fb5b8",
-          opacity: 0.12,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2.2,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false
-        }
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: { enable: true, distance: 150, color: "#ffd24a", opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 2 }
       },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
-        modes: { repulse: { distance: 120 } }
-      }
+      interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Add hover effects to all feature cards
-      document.querySelectorAll('.feature-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-12px)';
-        });
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = '';
-        });
-      });
+    /* Copy to Clipboard Function */
+    function copyCA() {
+      const caText = document.getElementById('ca-value').innerText;
+      navigator.clipboard.writeText(caText);
+      alert("Contract Address Copied to Clipboard!");
+    }
 
-      // Parallax scrolling effect
-      window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.parallax-layer');
-        parallaxElements.forEach(element => {
-          const speed = parseFloat(element.dataset.speed || "0.18");
-          const yPos = -(scrolled * speed);
-          element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-        });
-      });
-
-      // Banana hover enhancement
-      const bananas = document.querySelectorAll('.banana-float');
-      bananas.forEach(banana => {
-        banana.addEventListener('mouseenter', function() {
-          // apply local transform in addition to animation
-          this.style.transform = 'scale(1.45) rotate(180deg)';
-          this.style.filter = 'drop-shadow(0 0 28px rgba(255,210,74,0.95))';
-        });
-        banana.addEventListener('mouseleave', function() {
-          // allow float animation to resume naturally
-          this.style.transform = '';
-          this.style.filter = 'drop-shadow(0 0 10px rgba(0,0,0,0.6))';
-        });
-      });
-
-      // Subtle title glitch / neon flicker
-      const title = document.querySelector('.title-glitch');
-      if (title) {
-        setInterval(() => {
-          if (Math.random() > 0.94) {
-            title.style.transform = 'translateX(-3px) skewX(-1.2deg) scale(1.01)';
-            title.style.opacity = '0.97';
-            title.style.textShadow = '0 12px 50px rgba(255,210,74,0.06), 0 2px 12px rgba(95,224,208,0.04)';
-            setTimeout(() => {
-              title.style.transform = '';
-              title.style.opacity = '';
-              title.style.textShadow = '';
-            }, 160);
-          }
-        }, 520);
+    /* Simple Tagline Animation */
+    const tagline = document.querySelector('.tagline');
+    const text = tagline.innerText;
+    tagline.innerText = '';
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        tagline.innerText += text.charAt(i);
+        i++;
+        setTimeout(type, 50);
       }
-
-      // Animate progress bars after load
-      document.querySelectorAll('.progress-bar').forEach(el => {
-        const width = el.style.width || '0%';
-        // small timeout to trigger transition
-        setTimeout(() => el.style.width = width, 80);
-      });
-    });
-
-    // Typewriter effect for tagline (keeps same behavior)
-    (function() {
-      const tagline = document.querySelector('.tagline');
-      if (!tagline) return;
-      const originalText = tagline.textContent;
-      tagline.textContent = '';
-      let i = 0;
-      function typeWriter() {
-        if (i < originalText.length) {
-          tagline.textContent += originalText.charAt(i);
-          i++;
-          setTimeout(typeWriter, 30);
-        }
-      }
-      setTimeout(typeWriter, 600);
-    })();
+    }
+    setTimeout(type, 1000);
   </script>
 </body>
 </html>
