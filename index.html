@@ -146,8 +146,6 @@
 
     /* Buttons */
     .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-    
-    /* FIX: Applied hover animation to ALL btn-neon elements including button tags */
     .btn-neon {
       padding: 15px 30px; text-decoration: none; border-radius: 12px; font-weight: 800;
       display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;
@@ -160,17 +158,22 @@
     .btn-secondary { background: #0a1a1a; }
     .btn-secondary:hover { box-shadow: 0 0 25px var(--secondary); border-color: var(--secondary); }
 
-    /* FIX: Added Bio Modal Styles */
+    /* Bio Modal Styles */
     #bioModal {
       display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center;
     }
     .bio-content { position: relative; width: 90%; max-width: 1100px; animation: modalFade 0.4s ease; }
     .bio-img { width: 100%; height: auto; border: 3px solid var(--primary); border-radius: 15px; box-shadow: 0 0 30px var(--primary); }
-    .close-bio { position: absolute; top: -45px; right: 0; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; }
+    
+    .close-bio { 
+      position: absolute; top: -10px; right: 0; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; 
+      line-height: 1; transition: 0.3s;
+    }
+    .close-bio:hover { color: var(--primary); }
     @keyframes modalFade { from {opacity: 0; transform: scale(0.9);} to {opacity: 1; transform: scale(1);} }
 
-    /* Roadmap */
+    /* Sections & Roadmap */
     section { padding: 100px 0; }
     .section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary); font-family: Impact, sans-serif; }
     .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -180,16 +183,12 @@
     }
     .roadmap-step:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); }
     .step-badge { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
-
-    /* Features */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .feature-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
     .feature-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
-    /* Footer */
     footer { padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-    /* Mobile Adjustments */
     @media (max-width: 768px) {
       h1 { font-size: 2.8rem; }
       .social-floating {
@@ -207,7 +206,7 @@
 
   <div id="bioModal">
     <div class="bio-content">
-      <span class="close-bio" onclick="toggleBio()">✕ CLOSE</span>
+      <span class="close-bio" onclick="toggleBio()">&times;</span>
       <img src="Gemini_Generated_Image_6yljy66yljy66ylj.png" id="bioImg" class="bio-img" alt="The Chronicles of GAPE">
     </div>
   </div>
@@ -248,12 +247,15 @@
         <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
         </a>
-        <a href="https://opensea.io" class="btn-neon btn-secondary" target="_blank">
+        
+        <a href="https://opensea.io/item/ethereum/0xa0f38233688bb578c0a88102a95b846c18bc0ba7/2287" class="btn-neon btn-secondary" target="_blank">
           <i class="fas fa-monument"></i> VIEW NFT THAT INSPIRED IT ALL
         </a>
+
         <button class="btn-neon" onclick="toggleBio()" style="background: #1a1a1a;">
           <i class="fas fa-book-open"></i> THE CHRONICLES OF GAPE
         </button>
+        
         <a href="#roadmap" class="btn-neon" style="background: #1a1a1a;">
           <i class="fas fa-map"></i> ROADMAP
         </a>
@@ -310,7 +312,6 @@
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    /* Particles Config */
     particlesJS('particles-js', {
       particles: {
         number: { value: 80 },
@@ -324,14 +325,12 @@
       interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
     });
 
-    /* Copy to Clipboard Function */
     function copyCA() {
       const caText = document.getElementById('ca-value').innerText;
       navigator.clipboard.writeText(caText);
       alert("Contract Address Copied to Clipboard!");
     }
 
-    /* FIX: Bio Modal Logic */
     function toggleBio() {
       const modal = document.getElementById('bioModal');
       const img = document.getElementById('bioImg');
@@ -339,7 +338,7 @@
         modal.style.display = "none";
       } else {
         modal.style.display = "flex";
-        img.src = img.src; // Force image reload check
+        img.src = img.src; // Verify source load
       }
     }
 
@@ -348,7 +347,6 @@
       if (event.target == modal) { modal.style.display = "none"; }
     }
 
-    /* Simple Tagline Animation */
     const tagline = document.querySelector('.tagline');
     const text = tagline.innerText;
     tagline.innerText = '';
