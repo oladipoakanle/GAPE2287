@@ -3,136 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>$GAPE2287 - Intergalactic Meme Coin</title>
+  <title>$GAPE2287 - Live on Pump.fun</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
-    /* CSS Variables */
     :root {
-      --primary: #ffd24a; /* vivid banana gold */
-      --secondary: #5fe0d0; /* bright cyan */
-      --accent: #ff6b6b; /* neon coral */
-      --neon: rgba(255,210,74,0.24);
-      --dark: #0b0c10;
+      --primary: #ffd24a; 
+      --secondary: #5fe0d0; 
+      --accent: #ff6b6b; 
       --darker: #070713;
-      --grit: rgba(0,0,0,0.35);
     }
 
-    /* Reset & Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', 'Arial', sans-serif;
       background-color: var(--darker);
       color: #e8e6e0;
       overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Animated Space Background */
     .space-bg {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -4;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(95,224,208,0.06) 0%, transparent 35%),
-        radial-gradient(circle at 70% 80%, rgba(255,107,107,0.04) 0%, transparent 40%),
-        radial-gradient(circle at 40% 60%, rgba(255,210,74,0.04) 0%, transparent 45%),
-        linear-gradient(180deg, var(--darker) 0%, #000 100%);
-      filter: contrast(1.02) saturate(1.08);
-      transition: background 600ms ease;
+      background: radial-gradient(circle at 20% 30%, rgba(95,224,208,0.06) 0%, transparent 35%),
+                  linear-gradient(180deg, var(--darker) 0%, #000 100%);
     }
 
-    /* Particle System */
-    #particles-js { position: fixed; width: 100%; height: 100%; z-index: -3; pointer-events: none; }
+    #particles-js { position: fixed; width: 100%; height: 100%; z-index: -3; }
 
-    /* Floating Banana Containers */
-    .banana-float {
-      position: absolute; font-size: 2.4rem; animation: floatBanana 18s infinite linear;
-      z-index: 2; filter: drop-shadow(0 0 10px rgba(0,0,0,0.6));
-      opacity: 0.98; transform-origin: center;
-      transition: transform 240ms ease, filter 240ms ease;
-      will-change: transform;
-    }
-    @keyframes floatBanana {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(110px, 90px) rotate(24deg); }
-      50% { transform: translate(200px, -60px) rotate(8deg); }
-      75% { transform: translate(-120px, 110px) rotate(-18deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
-    }
-    .banana-float:hover { animation-play-state: paused; z-index: 30; }
-
-    /* Floating Socials */
-    .social-floating {
-      position: fixed;
-      right: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .social-floating .social-icon {
-      width: 50px; height: 50px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(5px);
-      color: var(--primary);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    .social-floating .social-icon:hover {
-      transform: scale(1.1) translateX(-5px);
-      background: var(--primary);
-      color: #000;
-      box-shadow: 0 0 20px var(--primary);
-    }
-
-    /* Main Container */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
-    /* Header Styling */
-    header { padding: 80px 20px 60px; text-align: center; position: relative; }
-    .header-glow {
-      position: absolute; width: 680px; height: 680px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,210,74,0.16) 0%, transparent 50%);
-      top: -340px; left: 50%; transform: translateX(-50%); opacity: 0.18; filter: blur(70px);
-      animation: glowDrift 8s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes glowDrift { 0% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(20px); } }
+    header { padding: 80px 20px 60px; text-align: center; }
 
-    /* Logo Styling */
-    .logo-3d-container { width: 280px; height: 280px; margin: 0 auto 30px; position: relative; z-index: 12; }
-    .logo-static {
-      width: 100%; height: 100%; object-fit: contain; border-radius: 50%;
-      filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
-      transition: transform 0.4s ease;
-    }
-    .logo-3d-container:hover .logo-static { transform: scale(1.05) rotate(3deg); }
+    .logo-3d-container { width: 280px; height: 280px; margin: 0 auto 30px; position: relative; }
+    .logo-static { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)); }
 
-    .orbit-ring {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      border-radius: 50%; opacity: 0.5; pointer-events: none;
-    }
-    .ring-1 { width: 340px; height: 340px; border: 1px dashed var(--secondary); animation: orbitSpin 20s linear infinite; }
-    @keyframes orbitSpin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* Typography */
-    h1 { font-family: "Impact", sans-serif; font-size: 4.5rem; color: #fff; text-transform: uppercase; margin: 10px 0; }
+    h1 { font-family: "Impact", sans-serif; font-size: 4.5rem; text-transform: uppercase; margin: 10px 0; }
     .title-glitch { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; }
-    header p { max-width: 800px; margin: 0 auto 40px; line-height: 1.6; font-size: 1.1rem; }
 
     /* Contract Address Box */
     .ca-container {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,210,74,0.3);
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 50px;
       display: inline-flex;
       align-items: center;
@@ -141,62 +55,37 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .ca-container:hover { background: rgba(255,210,74,0.1); border-color: var(--primary); }
-    .ca-text { font-family: monospace; color: var(--primary); }
+    .ca-container:hover { background: rgba(255,210,74,0.15); border-color: var(--primary); transform: scale(1.02); }
+    .ca-text { font-family: monospace; color: var(--primary); font-size: 1.1rem; }
 
-    /* Buttons */
     .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
     .btn-neon {
       padding: 15px 30px; text-decoration: none; border-radius: 12px; font-weight: 800;
       display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.1); color: #fff; cursor: pointer;
-      font-family: inherit; font-size: 1rem;
+      border: 1px solid rgba(255,255,255,0.1); color: #fff; cursor: pointer; font-size: 1rem;
     }
     .btn-neon:hover { transform: translateY(-5px); box-shadow: 0 0 25px var(--primary); border-color: var(--primary); }
+    .btn-primary { background: #1a1a1a; border-color: var(--primary); }
 
-    .btn-primary { background: #1a1a1a; box-shadow: 0 0 15px rgba(255,210,74,0.2); }
-    .btn-secondary { background: #0a1a1a; }
-    .btn-secondary:hover { box-shadow: 0 0 25px var(--secondary); border-color: var(--secondary); }
-
-    /* Bio Modal Styles */
+    /* Bio Modal */
     #bioModal {
       display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center;
     }
-    .bio-content { position: relative; width: 90%; max-width: 1100px; animation: modalFade 0.4s ease; }
-    .bio-img { width: 100%; height: auto; border: 3px solid var(--primary); border-radius: 15px; box-shadow: 0 0 30px var(--primary); }
-    
-    .close-bio { 
-      position: absolute; top: -10px; right: 0; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; 
-      line-height: 1; transition: 0.3s;
-    }
-    .close-bio:hover { color: var(--primary); }
-    @keyframes modalFade { from {opacity: 0; transform: scale(0.9);} to {opacity: 1; transform: scale(1);} }
+    .bio-content { position: relative; width: 90%; max-width: 1100px; }
+    .bio-img { width: 100%; border: 3px solid var(--primary); border-radius: 15px; }
+    .close-bio { position: absolute; top: -10px; right: 0; color: #fff; font-size: 40px; cursor: pointer; }
 
-    /* Sections & Roadmap */
-    section { padding: 100px 0; }
-    .section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--primary); font-family: Impact, sans-serif; }
-    .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .roadmap-step { 
-      background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; 
-      border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+    .social-floating {
+      position: fixed; right: 25px; top: 50%; transform: translateY(-50%);
+      z-index: 100; display: flex; flex-direction: column; gap: 18px;
     }
-    .roadmap-step:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); }
-    .step-badge { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-    .feature-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-    .feature-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
-
-    footer { padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2.8rem; }
-      .social-floating {
-        flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%);
-        background: rgba(7, 7, 19, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--primary);
-      }
-      .logo-3d-container { width: 200px; height: 200px; }
+    .social-icon {
+      width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.05); color: var(--primary); border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: 0.3s; text-decoration: none;
     }
+    .social-icon:hover { background: var(--primary); color: #000; transform: scale(1.1); }
   </style>
 </head>
 <body>
@@ -207,13 +96,9 @@
   <div id="bioModal">
     <div class="bio-content">
       <span class="close-bio" onclick="toggleBio()">&times;</span>
-      <img src="Gemini_Generated_Image_6yljy66yljy66ylj.png" id="bioImg" class="bio-img" alt="The Chronicles of GAPE">
+      <img src="Gemini_Generated_Image_6yljy66yljy66ylj.png" id="bioImg" class="bio-img">
     </div>
   </div>
-
-  <div class="banana-float" style="top:15%; left:10%;">🍌</div>
-  <div class="banana-float" style="top:65%; left:5%; animation-delay: -2s;">🍌</div>
-  <div class="banana-float" style="top:25%; left:85%; animation-delay: -5s;">🍌</div>
 
   <div class="social-floating">
     <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
@@ -222,143 +107,70 @@
 
   <div class="container">
     <header>
-      <div class="header-glow"></div>
-      
       <div class="logo-3d-container">
-        <div class="orbit-ring ring-1"></div>
-        <img src="IMG_5116.jpeg" alt="GAPE Logo" class="logo-static" />
+        <img src="IMG_5116.jpeg" class="logo-static" />
       </div>
 
       <h1 class="title-glitch">$GAPE2287</h1>
-      <h2 class="tagline">BANANAS, BLOCKCHAIN, AND BEYOND 🍌🚀</h2>
-
-      <p>
-        $GAPE2287 was born in the jungle — strong, wild, destined for greatness.
-        Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.
-        Mummified and mutated, he awakened in modern civilization — stronger, smarter, evolved.
-      </p>
+      <h2 class="tagline">WE ARE LIVE! 🍌🚀</h2>
 
       <div class="ca-container" onclick="copyCA()">
-        <span class="ca-text" id="ca-value">0xGAPE2287...PUMP_CONTRACT</span>
-        <i class="fas fa-copy" style="color: #fff;"></i>
+        <span class="ca-text" id="ca-value">6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P</span>
+        <i class="fas fa-copy" id="copy-icon" style="color: #fff;"></i>
       </div>
 
       <div class="btn-container">
-        <a href="https://pump.fun" class="btn-neon btn-primary" target="_blank">
+        <a href="https://pump.fun/coin/6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P" class="btn-neon btn-primary" target="_blank">
           <i class="fas fa-rocket"></i> BUY ON PUMP.FUN
         </a>
         
-        <a href="https://opensea.io/item/ethereum/0xa0f38233688bb578c0a88102a95b846c18bc0ba7/2287" class="btn-neon btn-secondary" target="_blank">
-          <i class="fas fa-monument"></i> VIEW NFT THAT INSPIRED IT ALL
-        </a>
-
         <button class="btn-neon" onclick="toggleBio()" style="background: #1a1a1a;">
           <i class="fas fa-book-open"></i> The Chronicles of GAPE2287
         </button>
-        
-        <a href="#roadmap" class="btn-neon" style="background: #1a1a1a;">
-          <i class="fas fa-map"></i> ROADMAP
+
+        <a href="https://opensea.io/item/ethereum/0xa0f38233688bb578c0a88102a95b846c18bc0ba7/2287" class="btn-neon" target="_blank" style="background: #0a1a1a;">
+          <i class="fas fa-monument"></i> VIEW NFT
         </a>
       </div>
     </header>
-
-    <section id="features">
-      <h2 class="section-title">APES STRONG TOGETHER</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="feature-icon">🦍</span>
-          <h3>APE-DRIVEN</h3>
-          <p>The jungle decides! Community-first governance for all $GAPE holders.</p>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon">🚀</span>
-          <h3>HYPERDRIVE</h3>
-          <p>Deflationary tokenomics designed to fuel our ascent to the cryptoverse.</p>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon">🌌</span>
-          <h3>GALACTIC VISION</h3>
-          <p>Metaverse integration and mummified NFT artifacts in development.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="roadmap">
-      <h2 class="section-title">THE ROAD TO THE MOON</h2>
-      <div class="roadmap-grid">
-        <div class="roadmap-step">
-          <span class="step-badge">PHASE 1</span>
-          <h3>Jungle Genesis</h3>
-          <p>Launch on Pump.fun, community building, and initial meme-warfare.</p>
-        </div>
-        <div class="roadmap-step">
-          <span class="step-badge">PHASE 2</span>
-          <h3>City Conquest</h3>
-          <p>Staking rewards, NFT drops, and strategic ape partnerships.</p>
-        </div>
-        <div class="roadmap-step">
-          <span class="step-badge">PHASE 3</span>
-          <h3>Moon Base</h3>
-          <p>CEX listings, metaverse land, and the final evolution of $GAPE.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>🚀 APE IN WITH CAUTION | NOT FINANCIAL ADVICE 🍌</p>
-      <p style="opacity: 0.5; margin-top: 10px;">© 2026 $GAPE2287. All bananas reserved.</p>
-    </footer>
   </div>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS('particles-js', {
       particles: {
-        number: { value: 80 },
+        number: { value: 60 },
         color: { value: ["#ffd24a", "#5fe0d0"] },
         shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 150, color: "#ffd24a", opacity: 0.2, width: 1 },
-        move: { enable: true, speed: 2 }
-      },
-      interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
+        opacity: { value: 0.4 },
+        size: { value: 2 },
+        line_linked: { enable: true, distance: 150, color: "#ffd24a", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1.5 }
+      }
     });
 
     function copyCA() {
       const caText = document.getElementById('ca-value').innerText;
       navigator.clipboard.writeText(caText);
-      alert("Contract Address Copied to Clipboard!");
+      
+      const icon = document.getElementById('copy-icon');
+      icon.className = "fas fa-check";
+      icon.style.color = "#5fe0d0";
+      
+      setTimeout(() => {
+        icon.className = "fas fa-copy";
+        icon.style.color = "#fff";
+      }, 2000);
     }
 
     function toggleBio() {
       const modal = document.getElementById('bioModal');
-      const img = document.getElementById('bioImg');
-      if (modal.style.display === "flex") {
-        modal.style.display = "none";
-      } else {
-        modal.style.display = "flex";
-        img.src = img.src; 
-      }
+      modal.style.display = (modal.style.display === "flex") ? "none" : "flex";
     }
 
     window.onclick = function(event) {
-      const modal = document.getElementById('bioModal');
-      if (event.target == modal) { modal.style.display = "none"; }
+      if (event.target == document.getElementById('bioModal')) { toggleBio(); }
     }
-
-    const tagline = document.querySelector('.tagline');
-    const text = tagline.innerText;
-    tagline.innerText = '';
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        tagline.innerText += text.charAt(i);
-        i++;
-        setTimeout(type, 50);
-      }
-    }
-    setTimeout(type, 1000);
   </script>
 </body>
 </html>
