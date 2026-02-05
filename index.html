@@ -71,34 +71,6 @@
     }
     .banana-float:hover { animation-play-state: paused; z-index: 30; }
 
-    /* Floating Socials */
-    .social-floating {
-      position: fixed;
-      right: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .social-floating .social-icon {
-      width: 50px; height: 50px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(5px);
-      color: var(--primary);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    .social-floating .social-icon:hover {
-      transform: scale(1.1) translateX(-5px);
-      background: var(--primary);
-      color: #000;
-      box-shadow: 0 0 20px var(--primary);
-    }
-
     /* Main Container */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
@@ -133,7 +105,21 @@
     h1 { font-family: "Impact", sans-serif; font-size: 4.5rem; color: #fff; text-transform: uppercase; margin: 10px 0; }
     .title-glitch { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .tagline { font-size: 1.8rem; color: var(--secondary); margin-bottom: 25px; font-weight: bold; }
-    header p { max-width: 800px; margin: 0 auto 40px; line-height: 1.6; font-size: 1.1rem; }
+    header p { max-width: 800px; margin: 0 auto 20px; line-height: 1.6; font-size: 1.1rem; }
+
+    /* Bio Social Buttons Positioned Underneath Text */
+    .bio-socials {
+      display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
+    }
+    .social-btn {
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--primary); transition: 0.3s ease; text-decoration: none; font-size: 1.2rem;
+    }
+    .social-btn:hover {
+      transform: scale(1.1); background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary);
+    }
 
     /* Contract Address Box */
     .ca-container {
@@ -200,10 +186,6 @@
 
     @media (max-width: 768px) {
       h1 { font-size: 2.8rem; }
-      .social-floating {
-        flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%);
-        background: rgba(7, 7, 19, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--primary);
-      }
       .logo-3d-container { width: 200px; height: 200px; }
       .ca-text { font-size: 0.8rem; }
     }
@@ -225,11 +207,6 @@
   <div class="banana-float" style="top:65%; left:5%; animation-delay: -2s;">🍌</div>
   <div class="banana-float" style="top:25%; left:85%; animation-delay: -5s;">🍌</div>
 
-  <div class="social-floating">
-    <a href="https://x.com/gape2287?s=21" class="social-icon" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://t.me/GAPE2287" class="social-icon" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-  </div>
-
   <div class="container">
     <header>
       <div class="header-glow"></div>
@@ -247,6 +224,11 @@
         Captured in ancient Egypt, he became a slave, but his rebellion sparked an uprising.
         Mummified and mutated, he awakened in modern civilization — stronger, smarter, evolved.
       </p>
+
+      <div class="bio-socials">
+        <a href="https://x.com/gape_2287?s=21" class="social-btn" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://t.me/GAPE2287" class="social-btn" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+      </div>
 
       <div class="ca-container" onclick="copyCA()">
         <span class="ca-text" id="ca-value">Cqq75yHneMfg9mvHq97ffLQB7L7Vax1VHYdi9bvVpump</span>
@@ -338,11 +320,9 @@
     function copyCA() {
       const caText = document.getElementById('ca-value').innerText;
       navigator.clipboard.writeText(caText);
-      
       const icon = document.getElementById('copy-icon');
       icon.className = "fas fa-check";
       icon.style.color = "#5fe0d0";
-      
       setTimeout(() => {
         icon.className = "fas fa-copy";
         icon.style.color = "#fff";
@@ -351,11 +331,7 @@
 
     function toggleBio() {
       const modal = document.getElementById('bioModal');
-      if (modal.style.display === "flex") {
-        modal.style.display = "none";
-      } else {
-        modal.style.display = "flex";
-      }
+      modal.style.display = (modal.style.display === "flex") ? "none" : "flex";
     }
 
     window.onclick = function(event) {
